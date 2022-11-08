@@ -1,0 +1,20 @@
+userStory
+
+    (1) 사용자는  회원가입을 한다. /user?a=join
+    (2) 사용자는  로그인을 한다.	/user?a=login
+    (3) 사용자는  로그아웃을 한다. /user?a=logout
+	(6) 로그인한 사용자는 자신의 정보를 수정한다. /user?a=update
+	
+    (4) 사용자는 방명록에 글을 남긴다. /guestbook?a=add
+    (5) 사용자는 방명록 자신의 글을 삭제한다. /guestbook?a=deleteform
+
+    (7) 로그인한 사용자는 게시판에 글을 작성한다.
+    (8) 로그인한 사용자는 자신의 글을 수정한다.
+    (9) 로그인한 사용자는 자신의 글을 삭제한다.
+    (10) 로그인한 사용자는 다른 사람의 글에 댓글을 남긴다.
+    (11) 사용자는 게시판글의 목록을 볼 수 있다.
+    (12) 사용자는 게시판글을 읽을 수 있다. 
+
+    com.bitacademy.mysite.controller
+    com.bitacademy.mysite.dao
+    com.bitacademy.mysite.vo
