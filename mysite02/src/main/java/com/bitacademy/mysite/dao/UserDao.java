@@ -9,6 +9,59 @@ import java.sql.SQLException;
 import com.bitacademy.mysite.vo.UserVo;
 
 public class UserDao {
+
+	public boolean update(UserVo vo) {
+		boolean result=false;
+		
+		
+		return result;
+	}
+	
+	public UserVo findByNo(Long no) {
+		UserVo result = null;
+
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			conn = getConnection();
+
+			String sql = "select * from user where no=?";
+			//select no, name, password, gender from user where no=3;
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setLong(1, no);
+
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				Long No = rs.getLong(1);
+
+				result = new UserVo();
+				result.setNo(No);
+
+			}
+
+		} catch (SQLException e) {
+			System.out.println("Error:" + e);
+		} finally {
+			try {
+				if (pstmt != null) {
+					pstmt.close();
+				}
+
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return result;
+	}
+
 	public UserVo findByEmailAndPassword(String email, String password) {
 		UserVo result = null;
 
