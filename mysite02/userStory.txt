@@ -14,7 +14,3 @@ userStory
     (10) 로그인한 사용자는 다른 사람의 글에 댓글을 남긴다.
     (11) 사용자는 게시판글의 목록을 볼 수 있다.
     (12) 사용자는 게시판글을 읽을 수 있다. 
-
-    com.bitacademy.mysite.controller
-    com.bitacademy.mysite.dao
-    com.bitacademy.mysite.vo
