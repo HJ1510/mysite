@@ -54,12 +54,15 @@ public class UserController extends HttpServlet {
 //			}
 			////
 			
-			UserVo vo = new UserDao().findByNo((long) 2);
+			UserVo vo = new UserDao().findByNo(authUser.getNo());
 			request.setAttribute("userVo", vo);
 			
 			request
 			.getRequestDispatcher("/WEB-INF/views/user/updateform.jsp")
 			.forward(request, response);
+		} else if("update".equals(action)) {
+			
+			
 		} else if ("loginform".equals(action)) {
 			request
 			.getRequestDispatcher("/WEB-INF/views/user/loginform.jsp")
@@ -84,7 +87,7 @@ public class UserController extends HttpServlet {
 			session.setAttribute("authUser", authUser); 	
 						
 			response.sendRedirect(request.getContextPath());
-					
+			
 		} else if("logout".equals(action)) {
 			HttpSession session = request.getSession();
 			if(session == null) {

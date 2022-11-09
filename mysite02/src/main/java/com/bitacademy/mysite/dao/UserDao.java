@@ -27,12 +27,12 @@ public class UserDao {
 		try {
 			conn = getConnection();
 
-			String sql = "select * from user where no=?";
+			String sql = "select no, email from user where no=?";
 			//select no, name, password, gender from user where no=3;
 			pstmt = conn.prepareStatement(sql);
 
 			pstmt.setLong(1, no);
-
+						
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
