@@ -27,8 +27,8 @@ public class UserDao {
 		try {
 			conn = getConnection();
 
-			String sql = "select * from user where no=?";
-			//select no, name, password, gender from user where no=3;
+			String sql = "select name, password, gender from user where no=?";
+			
 			pstmt = conn.prepareStatement(sql);
 
 			pstmt.setLong(1, no);
@@ -36,10 +36,14 @@ public class UserDao {
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
-				Long No = rs.getLong(1);
+				String name = rs.getString(1);
+				String password =rs.getString(2);
+				String gender=rs.getString(3);
 
 				result = new UserVo();
-				result.setNo(No);
+				result.setName(name);
+				result.setPassword(password);
+				result.setGender(gender);
 
 			}
 
