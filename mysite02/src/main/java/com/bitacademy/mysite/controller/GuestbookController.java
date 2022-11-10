@@ -33,13 +33,10 @@ public class GuestbookController extends HttpServlet {
 			vo.setContents(message);
 			new GuestbookDao().insert(vo);
 			
-			response.sendRedirect(request.getContextPath() + "/guestbook");
-
+			response.sendRedirect("/mysite02/guestbook");
 		} else if ("deleteform".equals(action)) {
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/guestbook/deleteform.jsp");
-			rd.forward(request, response);
-			
-			
+			rd.forward(request, response);			
 		} else if ("delete".equals(action)) {
 			String sno = request.getParameter("no");
 			Long no = Long.parseLong(sno);
