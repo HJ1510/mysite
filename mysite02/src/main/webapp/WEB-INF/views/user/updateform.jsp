@@ -41,7 +41,7 @@
 							</c:otherwise>
 						</c:choose>
 					</fieldset>										
-					<input type="submit" value="수정하기">
+					<input type="submit" value="수정하기.">
 				</form>
 			</div>
 		</div>
