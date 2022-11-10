@@ -70,12 +70,17 @@ public class UserDao {
 		try {
 			conn = getConnection();
 
+<<<<<<< HEAD
 			String sql = "select name, email, gender from user where no=?"; //updateform에서 보여줄 값(수정할 값xx)
 
+=======
+			String sql = "select no, email from user where no=?";
+			//select no, name, password, gender from user where no=3;
+>>>>>>> branch 'master' of https://github.com/HJ1510/mysite.git
 			pstmt = conn.prepareStatement(sql);
 
 			pstmt.setLong(1, no);
-
+						
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {

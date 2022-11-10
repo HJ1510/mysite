@@ -49,9 +49,14 @@ public class UserController extends HttpServlet {
 				return;
 			}
 			////
+<<<<<<< HEAD
 
+=======
+			
+>>>>>>> branch 'master' of https://github.com/HJ1510/mysite.git
 			UserVo vo = new UserDao().findByNo(authUser.getNo());
 			request.setAttribute("userVo", vo);
+<<<<<<< HEAD
 
 			request.getRequestDispatcher("/WEB-INF/views/user/updateform.jsp").forward(request, response);
 		} else if ("update".equals(action)) {
@@ -81,6 +86,15 @@ public class UserController extends HttpServlet {
 			authUser.setName(name);
 			response.sendRedirect(request.getContextPath() + "/user?a=updateform");
 
+=======
+			
+			request
+			.getRequestDispatcher("/WEB-INF/views/user/updateform.jsp")
+			.forward(request, response);
+		} else if("update".equals(action)) {
+			
+			
+>>>>>>> branch 'master' of https://github.com/HJ1510/mysite.git
 		} else if ("loginform".equals(action)) {
 			request.getRequestDispatcher("/WEB-INF/views/user/loginform.jsp").forward(request, response);
 		} else if ("login".equals(action)) {
@@ -102,8 +116,13 @@ public class UserController extends HttpServlet {
 			session.setAttribute("authUser", authUser);
 
 			response.sendRedirect(request.getContextPath());
+<<<<<<< HEAD
 
 		} else if ("logout".equals(action)) {
+=======
+			
+		} else if("logout".equals(action)) {
+>>>>>>> branch 'master' of https://github.com/HJ1510/mysite.git
 			HttpSession session = request.getSession();
 			if (session == null) {
 				/* 로그인 안된 상황 */
