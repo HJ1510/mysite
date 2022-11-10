@@ -70,7 +70,7 @@ public class UserDao {
 		try {
 			conn = getConnection();
 
-			String sql = "select name, email, gender from user where no=?"; //updateform에서 보여줄 값
+			String sql = "select name, email, gender from user where no=?"; //updateform에서 보여줄 값(수정할 값xx)
 
 			pstmt = conn.prepareStatement(sql);
 
