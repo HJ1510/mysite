@@ -19,24 +19,28 @@
 					<tr>
 						<th colspan="2">글보기</th>
 					</tr>
+
 					<tr>
 						<td class="label">제목</td>
-						<td>제목입니다.</td>
+						<td>${boardVo.title }</td>
 					</tr>
 					<tr>
 						<td class="label">내용</td>
 						<td>
 							<div class="view-content">
-								내용 1입니다.<br>
-								내용 2입니다.<br>
-								내용 3입니다.
+								${boardVo.contents }
 							</div>
 						</td>
+						
 					</tr>
+
 				</table>
+			
 				<div class="bottom">
-					<a href="">글목록</a>
+					<a href="board">글목록</a>
+					
 					<a href="">글수정</a> <!-- 본인의 글일때만 보여야 authUser no= vo의 userno -->
+					<a href="">답글</a>
 				</div>
 			</div>
 		</div>
