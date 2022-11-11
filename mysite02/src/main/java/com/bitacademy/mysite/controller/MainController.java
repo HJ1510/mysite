@@ -9,12 +9,17 @@ import javax.servlet.http.HttpServletResponse;
 public class MainController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	@Override
+	public void init() throws ServletException {
+		String configPath = getServletConfig().getInitParameter("config");
+		
+		System.out.println("MainController.init() called:"+configPath);
+	}
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		request
-		.getRequestDispatcher("/WEB-INF/views/main/index.jsp")
-		.forward(request, response);
+
+		request.getRequestDispatcher("/WEB-INF/views/main/index.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
