@@ -39,7 +39,7 @@
 							<a href="board?a=view&no=${vo.no }">${vo.title }</a>
 						</td>
 						<td>${vo.name }</td>
-						<td>hit</td>
+						<td>${vo.hit }</td>
 						<td>${vo.regDate }</td>
 						<td><a href="board?a=delete&no=${vo.no }" class="del">삭제</a></td>
 					</tr>
