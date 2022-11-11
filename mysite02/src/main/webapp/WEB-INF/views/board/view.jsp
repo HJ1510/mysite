@@ -39,7 +39,7 @@
 				<div class="bottom">
 					<a href="board">글목록</a>
 					
-					<a href="">글수정</a> <!-- 본인의 글일때만 보여야 authUser no= vo의 userno -->
+					<a href="board?a=modifyform">글수정</a> <!-- 본인의 글일때만 보여야 authUser no= vo의 userno -->
 					<a href="">답글</a>
 				</div>
 			</div>

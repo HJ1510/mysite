@@ -20,7 +20,7 @@ public class UserDao {
 			conn = getConnection();
 
 			if ("".equals(vo.getPassword())) {
-				String sql = "update user set name=?, gender=? where no=?"; //update할 값
+				String sql = "update user set name=?, gender=? where no=?"; // update할 값
 				pstmt = conn.prepareStatement(sql);
 
 				pstmt.setString(1, vo.getName());
@@ -37,6 +37,7 @@ public class UserDao {
 				pstmt.setLong(4, vo.getNo());
 
 			}
+
 			int count = pstmt.executeUpdate(); // int count = pstmt.executeUpdate(sql); 에러!
 
 			result = count == 1;
@@ -70,13 +71,12 @@ public class UserDao {
 		try {
 			conn = getConnection();
 
-
-			String sql = "select name, email, gender from user where no=?"; //updateform에서 보여줄 값(수정할 값xx)
+			String sql = "select name, email, gender from user where no=?"; // updateform에서 보여줄 값(수정할 값xx)
 
 			pstmt = conn.prepareStatement(sql);
 
 			pstmt.setLong(1, no);
-						
+
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
