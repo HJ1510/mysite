@@ -44,31 +44,26 @@ public class BoardController extends HttpServlet {
 			
 			request.getRequestDispatcher("/WEB-INF/views/board/view.jsp").forward(request, response);	
 			
-		} else if("modifyform".equals(action)) {
-			
-			
+		} else if("modifyform".equals(action)) {	
 			
 			request.getRequestDispatcher("/WEB-INF/views/board/modify.jsp").forward(request, response);
+		
 		} else if("modify".equals(action)) {
 		
 			String title=request.getParameter("title");
 			String content=request.getParameter("content");
 			String no=request.getParameter("no");
 			
-			System.out.println("-"+title);
-			System.out.println("-"+content);
-			System.out.println("-"+no);
+//			System.out.println("-"+title);
+//			System.out.println("-"+content);
+//			System.out.println("-"+no);
 						
 			BoardVo vo= new BoardVo();
 			vo.setTitle(title);
 			vo.setContents(content);
 			vo.setNo(Long.parseLong(no));
-			
-			System.out.println("2"+vo.getTitle());
-			
+
 			new BoardDao().update(vo);
-			
-			System.out.println("3"+vo.getTitle());
 			
 			// userController update-updateform session 연구
 			
