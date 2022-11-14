@@ -17,7 +17,7 @@
 			<div id="board">
 				<form class="board-form" method="post" action="${pageContext.request.contextPath }/board">
 					<input type = "text" name = "a" value="modify">
-					<input type = "text" name = "no" value="${authUser.no}">
+					<input type = "text" name = "no" value="${vo.no }">
 					<table class="tbl-ex">
 						<tr>
 							<th colspan="2">글수정</th>

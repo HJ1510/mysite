@@ -45,21 +45,24 @@ public class BoardController extends HttpServlet {
 			request.getRequestDispatcher("/WEB-INF/views/board/view.jsp").forward(request, response);	
 			
 		} else if("modifyform".equals(action)) {
+			
+			
+			
 			request.getRequestDispatcher("/WEB-INF/views/board/modify.jsp").forward(request, response);
 		} else if("modify".equals(action)) {
 		
 			String title=request.getParameter("title");
 			String content=request.getParameter("content");
-			String userNo=request.getParameter("no");
+			String no=request.getParameter("no");
 			
 			System.out.println("-"+title);
 			System.out.println("-"+content);
-			System.out.println("-"+userNo);
+			System.out.println("-"+no);
 						
 			BoardVo vo= new BoardVo();
 			vo.setTitle(title);
 			vo.setContents(content);
-			vo.setUserNo(Long.parseLong(userNo));
+			vo.setNo(Long.parseLong(no));
 			
 			System.out.println("2"+vo.getTitle());
 			

@@ -114,6 +114,7 @@ public class BoardDao {
 
 				String title = rs.getString(1);
 				String contents = rs.getString(2);
+				
 				result = new BoardVo();
 				result.setTitle(title);
 				result.setContents(contents);
