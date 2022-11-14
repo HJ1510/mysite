@@ -28,9 +28,9 @@ public class BoardDao {
 			pstmt.setString(2, vo.getContents());
 			pstmt.setLong(3, vo.getNo());
 			
-			System.out.println(":"+vo.getTitle());
-			System.out.println(":"+vo.getContents());
-			System.out.println(":"+vo.getNo());
+//			System.out.println(":"+vo.getTitle());
+//			System.out.println(":"+vo.getContents());
+//			System.out.println(":"+vo.getNo());
 
 			int count = pstmt.executeUpdate(); // int count = pstmt.executeUpdate(sql); 에러!
 

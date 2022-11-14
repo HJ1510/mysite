@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%> 
+<% pageContext.setAttribute("newLine", "\n"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,6 +19,7 @@
 				<table class="tbl-ex">
 					<tr>
 						<th colspan="2">글보기</th>
+						
 					</tr>
 
 					<tr>
@@ -26,14 +28,12 @@
 					</tr>
 					<tr>
 						<td class="label">내용</td>
-						<td>
+						<td>						
 							<div class="view-content">
-								${boardVo.contents }
-							</div>
-						</td>
-						
+							${fn:replace(boardVo.contents, newLine , '<br/>' )}
+							</div>							
+						</td>						
 					</tr>
-
 				</table>
 			
 				<div class="bottom">

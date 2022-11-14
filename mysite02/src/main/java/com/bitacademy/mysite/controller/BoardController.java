@@ -46,6 +46,10 @@ public class BoardController extends HttpServlet {
 			
 		} else if("modifyform".equals(action)) {	
 			
+			String no = request.getParameter("no");			
+			BoardVo vo = new BoardDao().findByNo(Long.parseLong(no));
+			request.setAttribute("boardVo", vo);
+			
 			request.getRequestDispatcher("/WEB-INF/views/board/modify.jsp").forward(request, response);
 		
 		} else if("modify".equals(action)) {
