@@ -41,7 +41,7 @@
 					<c:if test="${authUser.no == boardVo.userNo }">		
 					<a href="board?a=modifyform&no=${param.no }">글수정</a> <!-- 본인의 글일때만 보여야 authUser no= vo의 userno -->
 					</c:if>	
-					<a href="">답글</a>
+					<a href="board?a=replyform&no=${param.no }">답글</a>
 				</div>
 			</div>
 		</div>

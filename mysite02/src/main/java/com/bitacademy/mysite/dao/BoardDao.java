@@ -12,6 +12,85 @@ import com.bitacademy.mysite.vo.BoardVo;
 
 public class BoardDao {
 
+//	public Boolean replyInsert(BoardVo vo) {
+//		boolean result = false;
+//
+//		Connection conn = null;
+//		PreparedStatement pstmt = null;
+//
+//		try {
+//			conn = getConnection();
+//
+//			String sql = "insert into board values(null, ? , ? , 0 , now(), ? , ? , ?, ?)";
+//			pstmt = conn.prepareStatement(sql);
+//
+//			pstmt.setString(1, vo.getTitle());
+//			pstmt.setString(2, vo.getContents());
+//			pstmt.setInt(3, vo.getGroupNo());
+//			pstmt.setInt(4, vo.getOrderNo());
+//			pstmt.setInt(5, vo.getDepth());
+//			pstmt.setLong(6, vo.getUserNo());
+//			//
+//
+//			int count = pstmt.executeUpdate();
+//
+//			result = count == 1;
+//
+//		} catch (SQLException e) {
+//			System.out.println("Error:" + e);
+//		} finally {
+//			try {
+//				if (pstmt != null) {
+//					pstmt.close();
+//				}
+//
+//				if (conn != null) {
+//					conn.close();
+//				}
+//			} catch (SQLException e) {
+//				e.printStackTrace();
+//			}
+//		}
+//
+//		return result;
+//	}
+	
+//	public boolean hitCountUp(BoardVo vo) {
+//		boolean result = false;
+//
+//		Connection conn = null;
+//		PreparedStatement pstmt = null;
+//
+//		try {
+//			conn = getConnection();
+//
+//			String sql = "update board set hit=hit+1 where no=?";
+//			pstmt = conn.prepareStatement(sql);
+//			pstmt.setLong(1, vo.getNo());
+//			
+//			int count = pstmt.executeUpdate();
+//
+//			result = count == 1;
+//		} catch (SQLException e) {
+//
+//			System.out.println("Error:" + e);
+//		} finally {
+//			try {
+//				if (pstmt != null) {
+//					pstmt.close();
+//				}
+//
+//				if (conn != null) {
+//					conn.close();
+//				}
+//			} catch (SQLException e) {
+//				e.printStackTrace();
+//			}
+//		}
+//
+//		return result;
+//	}
+
 	public boolean update(BoardVo vo) {
 		boolean result = false;
 
@@ -27,12 +106,12 @@ public class BoardDao {
 			pstmt.setString(1, vo.getTitle());
 			pstmt.setString(2, vo.getContents());
 			pstmt.setLong(3, vo.getNo());
-			
+
 //			System.out.println(":"+vo.getTitle());
 //			System.out.println(":"+vo.getContents());
 //			System.out.println(":"+vo.getNo());
 
-			int count = pstmt.executeUpdate(); // int count = pstmt.executeUpdate(sql); 에러!
+			int count = pstmt.executeUpdate();
 
 			result = count == 1;
 		} catch (SQLException e) {
@@ -72,7 +151,7 @@ public class BoardDao {
 			pstmt.setLong(3, vo.getUserNo());
 			//
 
-			int count = pstmt.executeUpdate(); // int count = pstmt.executeUpdate(sql); 에러!
+			int count = pstmt.executeUpdate();
 
 			result = count == 1;
 
@@ -115,7 +194,7 @@ public class BoardDao {
 				String title = rs.getString(1);
 				String contents = rs.getString(2);
 				Long userNo = rs.getLong(3);
-				
+
 				result = new BoardVo();
 				result.setTitle(title);
 				result.setContents(contents);
@@ -187,32 +266,27 @@ public class BoardDao {
 		ResultSet rs = null;
 		try {
 			conn = getConnection();
-			String sql = "select a.no, a.title, a.contents, a.hit, date_format(a.reg_date, '%Y/%m/%d %H:%i:%s' ),a.group_no, a.order_no, a.depth , a.user_no, b.name from board a, user b where a.user_no =b.no order by no desc, group_no desc, order_no asc";
+			String sql = "select a.no, a.title, a.hit, date_format(a.reg_date, '%Y/%m/%d %H:%i:%s' ), a.depth , a.user_no, b.name from board a, user b where a.user_no =b.no order by no desc, group_no desc, order_no asc";
 			pstmt = conn.prepareStatement(sql);
 
-			rs = pstmt.executeQuery(); // rs = pstmt.executeQuery(sql); 오류는 안나지만..문법상 없애는게 좋음
+			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
 
 				Long no = rs.getLong(1);
 				String title = rs.getString(2);
-				String contents = rs.getString(3);
-				int hit = rs.getInt(4);
-				String regDate = rs.getString(5);
-				int groupNo = rs.getInt(6);
-				int orderNo = rs.getInt(7);
-				int depth = rs.getInt(8);
-				Long userNo = rs.getLong(9);
-				String name = rs.getString(10);
+
+				int hit = rs.getInt(3);
+				String regDate = rs.getString(4);
+				int depth = rs.getInt(5);
+				Long userNo = rs.getLong(6);
+				String name = rs.getString(7);
 
 				BoardVo vo = new BoardVo();
 				vo.setNo(no);
 				vo.setTitle(title);
-				vo.setContents(contents);
 				vo.setHit(hit);
 				vo.setRegDate(regDate);
-				vo.setGroupNo(groupNo);
-				vo.setOrderNo(orderNo);
 				vo.setDepth(depth);
 				vo.setUserNo(userNo);
 				vo.setName(name);
@@ -245,7 +319,7 @@ public class BoardDao {
 		Connection conn = null;
 		try {
 			Class.forName("org.mariadb.jdbc.Driver");
-			String url = "jdbc:mysql://127.0.0.1:3306/webdb?charset=utf8"; // 마리아db에선 utf-8로 하면 오류! 뒤에 옵션은 추가 가능
+			String url = "jdbc:mysql://127.0.0.1:3306/webdb?charset=utf8";
 			conn = DriverManager.getConnection(url, "webdb", "webdb");
 		} catch (ClassNotFoundException e) {
 			System.out.println("Class Not Found:" + e);

@@ -21,7 +21,8 @@ public class BoardController extends HttpServlet {
 		String action = request.getParameter("a");
 
 		if ("writeform".equals(action)) {			
-			request.getRequestDispatcher("/WEB-INF/views/board/write.jsp").forward(request, response);	
+			request.getRequestDispatcher("/WEB-INF/views/board/write.jsp").forward(request, response);
+			
 		} else if("write".equals(action)){
 			String title=request.getParameter("title");
 			String content=request.getParameter("content");			
@@ -35,11 +36,11 @@ public class BoardController extends HttpServlet {
 			new BoardDao().insert(vo);
 			
 			response.sendRedirect(request.getContextPath() + "/board");
-					
-		} else if("view".equals(action)) { // 완료
+
+		} else if("view".equals(action)) { 
 		
 			String no = request.getParameter("no");			
-			BoardVo vo = new BoardDao().findByNo(Long.parseLong(no));
+			BoardVo vo = new BoardDao().findByNo(Long.parseLong(no));			
 			request.setAttribute("boardVo", vo);
 			
 			request.getRequestDispatcher("/WEB-INF/views/board/view.jsp").forward(request, response);	
@@ -58,10 +59,6 @@ public class BoardController extends HttpServlet {
 			String content=request.getParameter("content");
 			String no=request.getParameter("no");
 			
-//			System.out.println("-"+title);
-//			System.out.println("-"+content);
-//			System.out.println("-"+no);
-						
 			BoardVo vo= new BoardVo();
 			vo.setTitle(title);
 			vo.setContents(content);
@@ -73,14 +70,36 @@ public class BoardController extends HttpServlet {
 			
 			response.sendRedirect(request.getContextPath() + "/board");
 						
-		} else if("delete".equals(action)) { // 완료
+		} else if("replyform".equals(action)) {
+			
+			String no = request.getParameter("no");			
+			BoardVo vo = new BoardDao().findByNo(Long.parseLong(no));
+			request.setAttribute("boardVo", vo);
+			
+			request.getRequestDispatcher("/WEB-INF/views/board/reply.jsp").forward(request, response);
+		} else if("reply".equals(action)) {
+						
+//			String title=request.getParameter("title");
+//			String content=request.getParameter("content");			
+//			String userNo=request.getParameter("no");
+//			
+//			BoardVo vo= new BoardVo();
+//			vo.setTitle(title);
+//			vo.setContents(content);
+//			vo.setUserNo(Long.parseLong(userNo));
+//		
+//			
+//			new BoardDao().replyInsert(vo);
+		
+			response.sendRedirect(request.getContextPath() + "/board");
+		} else if("delete".equals(action)) { 
 			String sno = request.getParameter("no");
 			Long no = Long.parseLong(sno);
 			new BoardDao().deleteByNo(no);
 			
 			response.sendRedirect(request.getContextPath() + "/board");
 		
-		} else { // 완료		
+		} else { 		
 			List<BoardVo> list = new BoardDao().findAll();
 
 			request.setAttribute("list", list);
