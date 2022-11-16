@@ -1,0 +1,9 @@
+MVC+3layer
+
+
+3layer
+-Presentation (View-controller) => url과 service mapping만 간단하게 나타냄
+
+-Service => 비즈니스 관련..  root application context 복잡할 수 있ㄷㅏ
+
+-Repository (Dao)
