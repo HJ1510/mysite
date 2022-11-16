@@ -41,8 +41,11 @@ public class BoardController extends HttpServlet {
 		
 			String no = request.getParameter("no");			
 			BoardVo vo = new BoardDao().findByNo(Long.parseLong(no));
-//			new BoardDao().hitCountUp(vo);
-			request.setAttribute("boardVo", vo);			
+			
+			request.setAttribute("boardVo", vo);	
+			vo.setNo(Long.parseLong(no));
+
+			new BoardDao().hitCountUp(vo);
 			
 			request.getRequestDispatcher("/WEB-INF/views/board/view.jsp").forward(request, response);	
 			

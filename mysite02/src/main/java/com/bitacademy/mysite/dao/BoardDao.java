@@ -55,41 +55,39 @@ public class BoardDao {
 //		return result;
 //	}
 	
-//	public boolean hitCountUp(BoardVo vo) {
-//		boolean result = false;
-//
-//		Connection conn = null;
-//		PreparedStatement pstmt = null;
-//
-//		try {
-//			conn = getConnection();
-//
-//			String sql = "update board set hit=hit+1 where no=?";
-//			pstmt = conn.prepareStatement(sql);
-//			pstmt.setLong(1, vo.getNo());
-//			
-//			int count = pstmt.executeUpdate();
-//
-//			result = count == 1;
-//		} catch (SQLException e) {
-//
-//			System.out.println("Error:" + e);
-//		} finally {
-//			try {
-//				if (pstmt != null) {
-//					pstmt.close();
-//				}
-//
-//				if (conn != null) {
-//					conn.close();
-//				}
-//			} catch (SQLException e) {
-//				e.printStackTrace();
-//			}
-//		}
-//
-//		return result;
-//	}
+	public void hitCountUp(BoardVo vo) {
+		int result = -1;
+
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+
+		try {
+			conn = getConnection();
+
+			String sql = "update board set hit=hit+1 where no=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setLong(1, vo.getNo());
+			
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+
+			System.out.println("Error:" + e);
+		} finally {
+			try {
+				if (pstmt != null) {
+					pstmt.close();
+				}
+
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+	}
 
 	public boolean update(BoardVo vo) {
 		boolean result = false;
@@ -326,4 +324,6 @@ public class BoardDao {
 		}
 		return conn;
 	}
+
+
 }
