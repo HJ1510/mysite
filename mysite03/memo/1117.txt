@@ -57,11 +57,11 @@ MyBatis에서의 Session
 ------
 
 DataSource (Bean)                         
-	↓주입											Mapper(XML) : SQL+param , Result
+	↓주입		(applicationContext.xml)				Mapper(XML) : SQL+param , Result
 (SQL)SessionFactory	(Bean)								→↑맵핑정보 요청			
 
 
-	↓주입																	
+	↓주입		(applicationContext.xml)															
 Session Template => SessionFactory 참조. 주입필요 (Bean)					
 
 Result selectOne(SQL, Param) {   | List<Result>selectList(SQL, Param){ | int insert(SQL, Param){
@@ -74,7 +74,7 @@ Result selectOne(SQL, Param) {   | List<Result>selectList(SQL, Param){ | int ins
 }								 | }							       |	7. 연결 종료		
 								 |									   | }
 								 
-	↓주입
+	↓주입		(applicationContext.xml)
 Repository
 
 ------
