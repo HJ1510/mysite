@@ -1,0 +1,36 @@
+자바 예외 처리
+
+Exception
+
+try {
+
+.....
+
+} catch(e) {
+
+	1. 사과
+	2. 로그
+	3. 정상종료
+
+} finally {
+
+}
+
+is read();
+
+Unchecked Exception -> Logic Error
+
+Checked Exception -> 찐예외 try~catch 예외처리 필요
+
+------
+
+AOP
+
+what : advice
+when : join point
+where : point cut -> which method 어떤 메소드인지만 설정
+↓
+after
+after returning
+after throwing
+around (before +after)
