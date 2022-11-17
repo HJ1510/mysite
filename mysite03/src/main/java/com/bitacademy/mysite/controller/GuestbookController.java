@@ -1,5 +1,7 @@
 package com.bitacademy.mysite.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +22,8 @@ public class GuestbookController {
 	
 	@RequestMapping({ "/list", "" })
 	public String list(Model model) {
-		model.addAttribute("list", guestbookService.getContents());
+		List<GuestbookVo> list  = guestbookService.getContents();
+		model.addAttribute("list", list);
 		return "guestbook/list";
 	}
 	
