@@ -33,4 +33,49 @@ where : point cut -> which method 어떤 메소드인지만 설정
 after
 after returning
 after throwing
-around (before +after)
+around (before + after)
+
+------
+
+ORM (Object-Relation Mapping)
+
+- JPA (JavaObject Persistence API) - Hibenate => Relation 맵핑 ; 일반적으로 ORM이라고 지칭되는 것
+	Object <-> Relation
+
+- MyBatis 3.0 의 mapper(XML) ( IBatis는 구버전임 내용이 다름 ) **
+	Object <-> SQL (parameter(쿼리 실행 전), result(쿼리 실행 후)) ; 일반적으로 jdbc라고 지칭되는 것
+
+------
+
+MyBatis에서의 Session
+1. 연결하기
+2. 트랜젝션 시작
+3. 쿼리 실행 => template
+4. 트랜젝션 종료
+5. 연결 종료
+
+------
+
+DataSource (Bean)                         
+	↓주입											Mapper(XML) : SQL+param , Result
+(SQL)SessionFactory	(Bean)								→↑맵핑정보 요청			
+
+
+	↓주입																	
+Session Template => SessionFactory 참조. 주입필요 (Bean)					
+
+Result selectOne(SQL, Param) {   | List<Result>selectList(SQL, Param){ | int insert(SQL, Param){
+	1. 연결하기					 |		1. 연결하기					   |	1. 연결하기
+	2. statement 준비				 |		2. statement 준비				   |	2. tx 시작
+	3. 파라미터 바인딩				 |		3. 파라미터 바인딩				   |	3. ...
+	4. 쿼리 실행					 |		4. 쿼리 실행					   |	4. ...
+	5. result 처리	 			 |		5. result 처리				   |	5. ...
+	6. 연결 끊기 					 |		6. 연결 끊기 					   |	6. tx 종료				
+}								 | }							       |	7. 연결 종료		
+								 |									   | }
+								 
+	↓주입
+Repository
+
+------
+main/resources/mybatis 폴더 아래 configuration.xml 파일 생성해야함		 

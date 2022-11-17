@@ -21,6 +21,13 @@
 		<property name="password" value="webdb" />
 	</bean>
 	
+	<!-- MyBatis SqlSessionFactoryBean --> 
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"> 
+		<property name="dataSource" ref="oracleDatasource" /> <!-- 출처  Connection Pool DataSource의 bean id="dataSource" -->
+		<property name="configLocation" value="classpath:mybatis/configuration.xml" /> 
+	</bean>
+		
+	
 	<context:annotation-config /> <!-- annotation 기반의 scanning -->
 
 	<context:component-scan base-package="com.bitacademy.mysite.service, com.bitacademy.mysite.repository"> <!-- 경로 확인 -->
