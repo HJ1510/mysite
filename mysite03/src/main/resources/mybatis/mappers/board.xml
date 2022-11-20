@@ -15,7 +15,7 @@
 	
 	<insert id="insert" parameterType="boardvo" >
 		<![CDATA[
-		insert into board values(null, #{title } , #{contents } , 0 , now(), 1 , 1 , 0, #{no })
+		insert into board values(null, #{title } , #{contents } , 0 , now(), 1 , 1 , 0, #{userNo })
 		]]>	
 	</insert>
 	

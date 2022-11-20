@@ -36,7 +36,8 @@ public class BoardService {
 	}
 	
 	public BoardVo findContents(Long no) {
-		boardRepository.findByNo(no);
+		boardRepository.findByNo(no);		
+		System.out.println("2:"+no);
 		return boardRepository.findByNo(no); //hit++
 	}
 	

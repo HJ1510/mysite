@@ -24,13 +24,13 @@
 
 					<tr>
 						<td class="label">제목</td>
-						<td>${boardVo.title }</td>
+						<td>${title }</td>
 					</tr>
 					<tr>
 						<td class="label">내용</td>
 						<td>						
 							<div class="view-content">
-							${fn:replace(boardVo.contents, newLine , '<br/>' )}
+							${fn:replace(contents, newLine , '<br/>' )}
 							</div>							
 						</td>						
 					</tr>
