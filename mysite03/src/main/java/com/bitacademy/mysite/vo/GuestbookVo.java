@@ -7,10 +7,6 @@ public class GuestbookVo {
 	private String contents;
 	private String regDate;
 
-	public void setRegDate(String regDate) {
-		this.regDate = regDate;
-	}
-
 	public int getNo() {
 		return no;
 	}
@@ -45,6 +41,10 @@ public class GuestbookVo {
 
 	public String getRegDate() {
 		return regDate;
+	}
+
+	public void setRegDate(String regDate) {
+		this.regDate = regDate;
 	}
 
 	@Override

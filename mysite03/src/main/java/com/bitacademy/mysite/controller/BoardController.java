@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.bitacademy.mysite.service.BoardService;
+import com.bitacademy.mysite.vo.BoardVo;
 
 @Controller
 @RequestMapping("/board")
@@ -16,7 +17,7 @@ public class BoardController {
 	@Autowired
 	private BoardService boardService;
 	
-	@RequestMapping({"/list", ""})
+	@RequestMapping({"/list", ""}) // 임시완료
 	public String list(Model model) {
 		model.addAttribute("list", boardService.getContents());
 		return "board/list";
@@ -34,10 +35,25 @@ public class BoardController {
 //	}
 //	
 	
-	@RequestMapping(value = "/write/{no}", method = RequestMethod.GET)
-	public String delete(@PathVariable("no") Long no, Model model) {
+	@RequestMapping(value = "/write/{no}", method = RequestMethod.GET) // 완료
+	public String write(@PathVariable("no") Long no, Model model) {
 		model.addAttribute("no", no);
 		return "board/write";
 	}
 	
+	@RequestMapping(value = "/write/{no}", method = RequestMethod.POST) // 완료
+	public String write(@PathVariable("no") Long no, BoardVo vo ) {
+		vo.setUserNo(no);
+//		System.out.println("1:"+vo);
+		boardService.addContents(vo);
+		return "redirect:/board";
+	}
+	
+	@RequestMapping("/view/{no}")
+	public String view(@PathVariable("no") Long no, Model model) {
+		boardService.findContents(no);
+		model.addAttribute("no", no);
+		return "board/view";
+	}
+
 }
