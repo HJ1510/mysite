@@ -11,8 +11,18 @@ Logging
 표준 Slf4J   (인터페이스)
 	Logback (구현체)
 
+debug
 info
 warn
 error
-debug
+
+
+===============================
+
+Spring Security => fillters...
+
+
+Interceptor
+dispatcher - controller 사이에 위치
+
 

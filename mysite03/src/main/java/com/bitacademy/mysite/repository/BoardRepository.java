@@ -190,7 +190,7 @@ public class BoardRepository {
 	}
 	
 	public BoardVo findByNo(Long no) {
-		System.out.println("3:"+no);
+//		System.out.println("3:"+no);
 		return sqlSession.selectOne("board.findByNo", no);
 	}
 	
