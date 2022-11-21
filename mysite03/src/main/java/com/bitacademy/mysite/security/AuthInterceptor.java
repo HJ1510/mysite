@@ -14,18 +14,23 @@ public class AuthInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		// 1. casting
+		// 1. handler 종류 확인
+		if(handler instanceof HandlerMethod == false) {
+			return true;			
+		}
+		
+		// 2. casting
 		HandlerMethod handlerMethod = (HandlerMethod)handler;
 		
-		// 2. Handler Method에 @Auth를 받아오기
+		// 3. Handler Method에 @Auth를 받아오기
 		Auth auth = handlerMethod.getMethodAnnotation(Auth.class);
 		
-		// 3. Handler Method에 @Auth가 없다면
+		// 4. Handler Method에 @Auth가 없다면
 		if(auth == null) {
 			return true;
 		}
 		
-		// 4. @Auth가 붙어있기때문에 인증(Authentification) 여부 확인
+		// 5. @Auth가 붙어있기때문에 인증(Authentification) 여부 확인
 		HttpSession session = request.getSession();
 		
 		if(session == null) {
@@ -38,7 +43,7 @@ public class AuthInterceptor implements HandlerInterceptor {
 				return false;
 			}
 			
-		// 5. @Auth도 붙어 있고 인증도 되어있다 -> 접근 허용
+		// 6. @Auth도 붙어 있고 인증도 되어있다 -> 접근 허용
 		return true;
 	}
 
