@@ -20,8 +20,7 @@ public class BoardController {
 	@RequestMapping({"/list", ""}) // 임시완료
 	public String list(Model model) {
 		model.addAttribute("list", boardService.getContents());
-		return "board/list";
-		
+		return "board/list";		
 	}
 	
 //	public Map<String, Object> findContentsList(int currentPage){
@@ -54,9 +53,8 @@ public class BoardController {
 		BoardVo boardVo = boardService.findContents(no);
 		model.addAttribute("title", boardVo.getTitle());
 		model.addAttribute("contents", boardVo.getContents());
-//		model.addAttribute("no", no);
-//		model.addAttribute("userNo", boardVo.getUserNo()); ???
-		System.out.println("1:"+ model);
+		model.addAttribute("userNo", boardVo.getUserNo()); 
+//		System.out.println("1:"+ model);		
 		return "board/view";
 	}
 

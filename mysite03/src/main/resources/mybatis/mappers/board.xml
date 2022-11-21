@@ -3,13 +3,13 @@
 <mapper namespace="board">
 	<select id="findAll" resultType="boardvo">
 		<![CDATA[
-		select a.no, a.title, a.hit, date_format(a.reg_date, '%Y/%m/%d %H:%i:%s' ) as regDate, a.depth , a.user_no, b.name from board a, user b where a.user_no =b.no order by no desc, group_no desc, order_no asc
+		select a.no, a.title, a.hit, date_format(a.reg_date, '%Y/%m/%d %H:%i:%s' ) as regDate, a.depth , a.user_no as userNo, b.name from board a, user b where a.user_no =b.no order by no desc, group_no desc, order_no asc
 		]]>
 	</select>
 	
 	<select id="findByNo" resultType="boardvo">
 		<![CDATA[
-		select title , contents, user_no from board where no= #{no }
+		select title , contents, user_no as userNo from board where no= #{no }
 		]]>
 	</select>	
 	

@@ -36,16 +36,15 @@
 							<c:if test="${vo.depth !=0 }">
 							<img src='${pageContext.request.contextPath }/assets/images/reply.png' />
 							</c:if>
-							<a href="board/view/${vo.no }">${vo.title }</a>
+							<a href="board/view/${vo.no }">${vo.title } </a>
 						</td>
 						<td>${vo.name }</td>
 						<td>${vo.hit }</td>
 						<td>${vo.regDate }</td>
 						<td>
-							<!--<c:if test="${authUser.name ==vo.name }">
+							<c:if test="${authUser.no == vo.userNo }">
 							<a href="board/delete/${vo.no }" class="del">삭제</a>
-							</c:if> -->
-							<a href="board?a=delete&no=${vo.no }" class="del">삭제</a>
+							</c:if>
 						</td>
 					</tr>
 						</c:forEach>
