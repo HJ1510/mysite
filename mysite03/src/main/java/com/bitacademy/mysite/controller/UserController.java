@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.bitacademy.mysite.security.Auth;
 import com.bitacademy.mysite.service.UserService;
 import com.bitacademy.mysite.vo.UserVo;
 
@@ -18,6 +19,7 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
+
 	@RequestMapping(value="/join", method=RequestMethod.GET)
 	public String join() {
 		return "user/join";
@@ -39,18 +41,6 @@ public class UserController {
 		return "user/login";
 	}
 	
-	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public String login(HttpSession session, UserVo userVo, Model model) {
-		UserVo authUser = userService.findUser(userVo);
-		if(authUser == null) {
-			model.addAttribute("email", userVo.getEmail());
-			return "user/login";
-		} 
-		
-		session.setAttribute("authUser", authUser);
-		return "redirect:/";
-	}
-	
 	@RequestMapping("logout")
 	public String logout(HttpSession session) {
 		// Access Control //로그인 안된 유저 접근제한
@@ -66,8 +56,9 @@ public class UserController {
 		return "redirect:/";
 	}
 	
+	@Auth
 	@RequestMapping(value="/update", method=RequestMethod.GET)
-	public String update(Model model, HttpSession session) {
+	public String update(Model model, @AuthUser UserVo authUser) {
 		// Access Control //로그인 안된 유저 접근제한
 		UserVo authUser = (UserVo)session.getAttribute("authUser");
 		if(authUser == null) {

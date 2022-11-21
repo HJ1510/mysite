@@ -2,6 +2,7 @@ package com.bitacademy.mysite.security;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -25,11 +26,13 @@ public class LoginInterceptor implements HandlerInterceptor {
 		
 		if(authUser == null) {
 			request.setAttribute("email", email);
-			return "user/login";
+			request.getRequestDispatcher("/WEB-INF/views/user/login.jsp").forward(request, response);
+			return false;
 		} 
 		
+		HttpSession session = request.getSession(true); 
 		session.setAttribute("authUser", authUser);
-		return "redirect:/";
+		response.sendRedirect(request.getContextPath());
 
 		return false;
 	}

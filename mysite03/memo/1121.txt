@@ -10,11 +10,16 @@ Logging
 
 표준 Slf4J   (인터페이스)
 	Logback (구현체)
+	
+보안(Security) = 인증(Authentification) + 권한(Authorization)
 
-debug
+보안 = 인프라(네트워크, 서버, 소프트웨어[인증(Authentification) + 권한(Authorization)])
+
+
 info
 warn
 error
+debug
 
 
 ===============================
