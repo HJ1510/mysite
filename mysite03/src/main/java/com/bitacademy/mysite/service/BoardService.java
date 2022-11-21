@@ -35,22 +35,20 @@ public class BoardService {
 		//답글여부 확인해서 처리 groupNo==null
 	}
 	
-	public BoardVo findContents(Long no) {
-		boardRepository.findByNo(no);		
+	public BoardVo findContents(Long no) {	
 //		System.out.println("2:"+no);
 		return boardRepository.findByNo(no); //hit++
 	}
 	
-	public BoardVo findContents(Long no, Long userNo) {
-		return null;
+	public void deleteContents(Long no, Long userNo) {
+		boardRepository.deleteByNo(userNo);
+		
 	}
-
 	
 	public void updateContents(BoardVo vo) {
+		boardRepository.update(vo);
+		System.out.println("2:"+vo);
 		
 	}
-	
-	public void deleteContents(Long no, Long userNo) {
-		
-	}
+
 }

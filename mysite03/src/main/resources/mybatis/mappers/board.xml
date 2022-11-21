@@ -19,5 +19,24 @@
 		]]>	
 	</insert>
 	
+	<delete id="deleteByNo" parameterType="Long">
+		<![CDATA[
+		delete from board where no = #{no }
+		]]>	
+	</delete>
+	
+	<update id="update" parameterType="uservo">
+		<![CDATA[
+		update board set title=#{title }, contents=#{contents } where no=#{no }
+		]]>
+	</update>
+	
+	<update id="hitCountUp" parameterType="int">
+		<![CDATA[
+		update board set hit=hit+1 where no=#{no }
+		]]>
+	</update>
+	
+	
 	
 </mapper>
