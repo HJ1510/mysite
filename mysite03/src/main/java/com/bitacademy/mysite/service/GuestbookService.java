@@ -24,6 +24,7 @@ public class GuestbookService {
 	}
 	
 	public void addContents(GuestbookVo vo){
+//		System.out.println("2"+vo);
 		guestbookRepository.insert(vo);
 		
 	}
