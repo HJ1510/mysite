@@ -1,0 +1,18 @@
+
+Logging
+
+1. java.util.logging					x 사용안함
+2. Apache의 Jarkarta Commons Logging		o
+3. Log4J								x 사용안함
+	ALog, BLog, CLog
+	
+=====================
+
+표준 Slf4J   (인터페이스)
+	Logback (구현체)
+
+info
+warn
+error
+debug
+
