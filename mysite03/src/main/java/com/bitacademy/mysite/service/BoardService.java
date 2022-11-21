@@ -40,6 +40,12 @@ public class BoardService {
 		return boardRepository.findByNo(no); //hit++
 	}
 	
+	
+	public void hitCountUp(BoardVo vo) {
+		boardRepository.hitCountUp(vo);
+		System.out.println("hit2"+vo);
+	}
+	
 	public void deleteContents(Long no, Long userNo) {
 		boardRepository.deleteByNo(userNo);
 		

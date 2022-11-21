@@ -55,7 +55,9 @@ public class BoardController {
 		model.addAttribute("title", boardVo.getTitle());
 		model.addAttribute("contents", boardVo.getContents());
 		model.addAttribute("userNo", boardVo.getUserNo()); 
+		boardService.hitCountUp(boardVo);
 //		System.out.println("1:"+ model);		
+		System.out.println("1:"+ boardVo);		
 		return "board/view";
 	}
 	
@@ -66,16 +68,18 @@ public class BoardController {
 		return "redirect:/board";
 	}
 	
+	@Auth
 	@RequestMapping(value = {"/modify/{no}", "/modify"}, method = RequestMethod.GET)
 	public String modify(@PathVariable("no") Long no, Model model) {
 		BoardVo boardVo = boardService.findContents(no);
 		model.addAttribute("no", no);
 		model.addAttribute("title", boardVo.getTitle());
 		model.addAttribute("contents", boardVo.getContents());
-		System.out.println("mod:"+model);
+//		System.out.println("mod:"+model);
 		return "board/modify";
 	}
 	
+	@Auth
 	@RequestMapping(value = {"/modify/{no}"}, method = RequestMethod.POST)
 	public String modify(@PathVariable("no") Long no, BoardVo vo ) {
 		boardService.updateContents(vo);
