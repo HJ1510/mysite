@@ -50,21 +50,25 @@ $(function(){
 			<div id="gallery">
 				<div>
 					<h1>갤러리</h1>
-					<a href="" id="upload-image">이미지 올리기 </a>
+					<a href="" id="upload-image">이미지 올리기</a>
 				</div>
 				<ul>
+					
 						<li>
-							<a	href="${pageContext.request.contextPath }/assets/images/202210225469386.jpg"
+						<c:set var='count' value='${fn:length(list) }'/>
+						<c:forEach items='${list }' var='vo' varStatus='status'>	
+							<a	href="${pageContext.request.contextPath }/assets${vo.url }"
 								data-lightbox="gallery"
 								class="image"
-								style="background-image:url('${pageContext.request.contextPath }/assets/images/202210225469386.jpg')">&nbsp;</a>
+								style="background-image:url('${pageContext.request.contextPath }/assets$/images/20221022113545808.png')">&nbsp;</a>
 								
-							<a	href="${pageContext.request.contextPath }/gallery/delete/1"
+							<a	href="${pageContext.request.contextPath }/gallery/delete/${vo.no }"
 								class="del-button"
 								title="삭제">삭제</a>
+						</c:forEach>
 						</li>
 						
-						<li>
+						<!-- <li>
 							<a	href="${pageContext.request.contextPath }/assets/gallery-examples/im1.jpg"
 								data-lightbox="gallery"
 								class="image"
@@ -229,7 +233,7 @@ $(function(){
 							<a	href="${pageContext.request.contextPath }/gallery/delete/15"
 								class="del-button"
 								title="삭제">삭제</a>
-						</li>																																				
+						</li>		  -->																																		
 				</ul>	
 			</div>
 

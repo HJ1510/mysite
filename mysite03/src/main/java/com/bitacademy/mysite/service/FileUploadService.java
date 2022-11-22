@@ -48,7 +48,7 @@ public class FileUploadService {
 		} catch (IOException e) {
 			throw new FileUploadServiceException(e.toString());
 		}
-		System.out.println("url"+url);
+//		System.out.println("url:"+url);
 		return url;
 	}
 

@@ -11,8 +11,14 @@
 
 	<delete id="deleteByNo" parameterType="Long"> <!-- parameterType="uservo" 차이?? -->
 		<![CDATA[
-			delete from gallery where no=#{no }
+			delete from gallery where no = #{no }
 		]]>	
 	</delete>
+	
+	<select id="findAll" resultType="galleryVo">
+		<![CDATA[
+		select no, url, comments from gallery
+		]]>
+	</select>
 
 </mapper>

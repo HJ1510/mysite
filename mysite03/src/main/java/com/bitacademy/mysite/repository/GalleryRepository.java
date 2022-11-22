@@ -1,5 +1,7 @@
 package com.bitacademy.mysite.repository;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -19,8 +21,11 @@ public class GalleryRepository {
 	}
 
 	public GalleryVo delete(Long no) {
-		
+		System.out.println("rep"+no);
 		return sqlSession.selectOne("gallery.deleteByNo", no);
 	}
 
+	public List<GalleryVo> findAll() {
+		return sqlSession.selectList("gallery.findAll");
+	}
 }
