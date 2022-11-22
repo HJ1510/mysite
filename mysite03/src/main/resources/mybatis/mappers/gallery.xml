@@ -3,4 +3,16 @@
 
 <mapper namespace="gallery"> <!-- 명시 -->
 
+	<insert id="insert" parameterType="galleryVo"> <!-- insert 말고 다른 것을 써도 되지만 의미적으로 명시해주는 것이 좋음 -->
+		<![CDATA[ 
+		insert into gallery values(null, #{url }, #{comments } ) 
+		]]>
+	</insert>
+
+	<delete id="deleteByNo" parameterType="Long"> <!-- parameterType="uservo" 차이?? -->
+		<![CDATA[
+			delete from gallery where no=#{no }
+		]]>	
+	</delete>
+
 </mapper>

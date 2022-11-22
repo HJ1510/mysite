@@ -32,11 +32,11 @@ public class FileUploadService {
 			String originalFilename = multipartFile.getOriginalFilename();
 			String extName = originalFilename.substring(originalFilename.lastIndexOf('.') + 1); // 확장자
 			String restoreFilename = generatrSaveFilename(extName);
-			Long fileSize = multipartFile.getSize();
+//			Long fileSize = multipartFile.getSize();
 	
-			System.out.println("########" + originalFilename);
-			System.out.println("########" + restoreFilename);
-			System.out.println("########" + fileSize);
+//			System.out.println("########" + originalFilename);
+//			System.out.println("########" + restoreFilename);
+//			System.out.println("########" + fileSize);
 			byte[] data = multipartFile.getBytes();
 			
 			OutputStream os =new FileOutputStream(RESTORE_PATH + "/" + restoreFilename);
@@ -48,7 +48,7 @@ public class FileUploadService {
 		} catch (IOException e) {
 			throw new FileUploadServiceException(e.toString());
 		}
-
+		System.out.println("url"+url);
 		return url;
 	}
 

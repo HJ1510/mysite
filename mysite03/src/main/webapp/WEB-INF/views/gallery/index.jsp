@@ -50,9 +50,20 @@ $(function(){
 			<div id="gallery">
 				<div>
 					<h1>갤러리</h1>
-					<a href="" id="upload-image">이미지 올리기</a>
+					<a href="" id="upload-image">이미지 올리기 </a>
 				</div>
 				<ul>
+						<li>
+							<a	href="${pageContext.request.contextPath }/assets/images/202210225469386.jpg"
+								data-lightbox="gallery"
+								class="image"
+								style="background-image:url('${pageContext.request.contextPath }/assets/images/202210225469386.jpg')">&nbsp;</a>
+								
+							<a	href="${pageContext.request.contextPath }/gallery/delete/1"
+								class="del-button"
+								title="삭제">삭제</a>
+						</li>
+						
 						<li>
 							<a	href="${pageContext.request.contextPath }/assets/gallery-examples/im1.jpg"
 								data-lightbox="gallery"
