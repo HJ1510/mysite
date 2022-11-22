@@ -40,27 +40,19 @@
 					<form:input path="email" /> <!-- modelAttribute -->
 					<input type="button" value="가입 확인">
 					<p style="text-align: left; padding: 2px 0 2px 0; color: red">
-						<spring:hasBindErrors name="userVo">
-						   <c:if test="${errors.hasFieldErrors('email') }">
-						        <spring:message code="${errors.getFieldError('email').codes[0] }" />
-						   </c:if>
-						</spring:hasBindErrors>
+						<form:errors path="email" />
 					</p>
 					
 					<label class="block-label">패스워드</label>
 					<form:password path="password" /> <!-- modelAttribute -->
 					<p style="text-align: left; padding: 2px 0 2px 0; color: red">
-						<spring:hasBindErrors name="userVo">
-						   <c:if test="${errors.hasFieldErrors('password') }">
-						        <spring:message code="${errors.getFieldError('password').codes[0] }" />
-						   </c:if>
-						</spring:hasBindErrors>
+						<form:errors path="password" />
 					</p>
 					
 					<fieldset>
 						<legend>성별</legend>
-						<form:radiobutton path="gender" value="female" label="여" checked="${userVo.gender == 'female' }"/>
-						<form:radiobutton path="gender" value="male" label="남" checked="${userVo.gender == 'male' }"/>
+						<form:radiobutton path="gender" value="female" label="여" />
+						<form:radiobutton path="gender" value="male" label="남" />
 						<!-- <c:choose>
 							<c:when test="${userVo.gender == 'female' }">
 								<label>여</label> <input type="radio" name="gender" value="female" checked="checked">
