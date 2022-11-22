@@ -1,4 +1,10 @@
 
 -정규표현식
 
--로케일(locale) kr,en,cn,jp ...
+-로케일(locale) ko,en,cn,jp ...
+
+messages_ko.properties
+join.form.name.title=이름
+
+messages_en.properties
+join.form.name.title=name

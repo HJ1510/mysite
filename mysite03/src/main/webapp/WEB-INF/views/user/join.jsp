@@ -59,7 +59,9 @@
 					
 					<fieldset>
 						<legend>성별</legend>
-						<c:choose>
+						<form:radiobutton path="gender" value="female" label="여" checked="${userVo.gender == 'female' }"/>
+						<form:radiobutton path="gender" value="male" label="남" checked="${userVo.gender == 'male' }"/>
+						<!-- <c:choose>
 							<c:when test="${userVo.gender == 'female' }">
 								<label>여</label> <input type="radio" name="gender" value="female" checked="checked">
 								<label>남</label> <input type="radio" name="gender" value="male">
@@ -68,7 +70,7 @@
 								<label>여</label> <input type="radio" name="gender" value="female">
 								<label>남</label> <input type="radio" name="gender" value="male" checked="checked">
 							</c:otherwise>
-						</c:choose>
+						</c:choose> -->
 					</fieldset>
 					
 					<fieldset>
