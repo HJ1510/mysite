@@ -8,3 +8,32 @@ join.form.name.title=이름
 
 messages_en.properties
 join.form.name.title=name
+
+
+=====================
+fileupload
+
+POST /mysite/user/join HTTP/1.1
+..
+..
+..
+name=안대혁&email=kickscar@gmail&password=1234&.....
+
+
+
+POST /fileupload/upload HTTP/1.1
+..
+..
+..
+분리자: === 
+encoding: utf-8
+
+=== 
+email=kickscar@gmail.com (encoding하고)			
+===                         ==> multipart    ===========>	1.↙  DiapatcherServlet	
+name:file                                   2.↙	Multipart Resolver 3.→String(email)	4.→  Controller
+..									Common Fileupload  ---3.처리--->   MultipartFile(file) ↗ 4.(param)
+..									Common IO
+fgasjdhflsag 			 (encoding 안하고)
+ajgkshgljhsgjkh
+sjkgahskghkg
