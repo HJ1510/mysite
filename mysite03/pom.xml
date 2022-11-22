@@ -52,7 +52,15 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
 			<version>${org.springframework-version}</version>
-		</dependency>			
+		</dependency>	
+		
+		<!-- validation -->
+		<dependency>
+		   <groupId>org.hibernate</groupId>
+		   <artifactId>hibernate-validator</artifactId>
+		   <version>6.2.3.Final</version>
+		</dependency>
+		
 
 		<!-- Apache Common DBCP https://mvnrepository.com/artifact/commons-dbcp/commons-dbcp -->
 		<dependency>
