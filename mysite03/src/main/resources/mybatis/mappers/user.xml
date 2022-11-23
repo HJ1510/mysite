@@ -4,7 +4,7 @@
 <mapper namespace="user"> <!-- 명시 -->
 	<insert id="insert" parameterType="uservo"> <!-- insert 말고 다른 것을 써도 되지만 의미적으로 명시해주는 것이 좋음 -->
 		<![CDATA[ 
-		insert into user values (null, #{name } , #{email } , #{password } , #{gender } ,now()) 
+		insert into user values (null, #{name } , #{email } , #{password } , #{gender } ,now(), 'user') 
 		]]>
 		<!-- get()으로 가져옴.. get()없으면 오류 -->
 		<!-- [CDATA[] 태그 아님 컨텐츠임을 표시 -->
@@ -12,7 +12,7 @@
 	
 	<select id="findByEmailAndPassword" resultType="uservo" parameterType="map">
 		<![CDATA[ 
-		select no, name from user where email=#{email } and password=#{password }
+		select no, name, role from user where email=#{email } and password=#{password }
 		]]>
 	</select>
 	
