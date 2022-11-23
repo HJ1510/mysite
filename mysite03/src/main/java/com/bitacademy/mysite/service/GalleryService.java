@@ -14,15 +14,17 @@ public class GalleryService {
 	@Autowired
 	private GalleryRepository galleryRepository;
 	
+	public List<GalleryVo> getImageList() {
+		return galleryRepository.findAll();
+	}
+	
 	public void saveImages(GalleryVo galleryVo) {
 		galleryRepository.insert(galleryVo);
 	}
 	
 	public void removeImages(Long no) {
-		galleryRepository.delete(no);
+		galleryRepository.deleteByNo(no);
 	}
 	
-	public List<GalleryVo> getContentsList() {
-		return galleryRepository.findAll();
-	}
+
 }

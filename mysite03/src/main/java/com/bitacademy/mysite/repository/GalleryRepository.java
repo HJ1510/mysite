@@ -14,18 +14,19 @@ public class GalleryRepository {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public Boolean insert(GalleryVo galleryVo) {
-		int count = sqlSession.insert("gallery.insert", galleryVo);
-//		System.out.println("3"+galleryVo);
-		return count == 1;
-	}
-
-	public GalleryVo delete(Long no) {
-		System.out.println("rep"+no);
-		return sqlSession.selectOne("gallery.deleteByNo", no);
-	}
-
 	public List<GalleryVo> findAll() {
 		return sqlSession.selectList("gallery.findAll");
 	}
+	
+	public void insert(GalleryVo galleryVo) {
+		sqlSession.insert("gallery.insert", galleryVo);
+//		System.out.println("3"+galleryVo);
+	}
+
+	public GalleryVo deleteByNo(Long no) {
+//		System.out.println("rep"+no);
+		return sqlSession.selectOne("gallery.deleteByNo", no);
+	}
+
+
 }

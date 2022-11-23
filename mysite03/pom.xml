@@ -54,6 +54,13 @@
 			<version>${org.springframework-version}</version>
 		</dependency>	
 		
+		<!-- validation -->
+		<dependency>
+		   <groupId>org.hibernate</groupId>
+		   <artifactId>hibernate-validator</artifactId>
+		   <version>6.2.3.Final</version>
+		</dependency>
+		
 		<!-- common fileupload -->
 		<dependency>
 			<groupId>commons-fileupload</groupId>
@@ -64,13 +71,6 @@
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
 			<version>2.11.0</version>
-		</dependency>
-		
-		<!-- validation -->
-		<dependency>
-		   <groupId>org.hibernate</groupId>
-		   <artifactId>hibernate-validator</artifactId>
-		   <version>6.2.3.Final</version>
 		</dependency>
 		
 		<!-- Apache Common DBCP https://mvnrepository.com/artifact/commons-dbcp/commons-dbcp -->

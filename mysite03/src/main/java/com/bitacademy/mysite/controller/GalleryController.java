@@ -27,14 +27,16 @@ public class GalleryController {
 	
 	@RequestMapping("")
 	public String list(Model model) {
-		List<GalleryVo> list  = galleryService.getContentsList();
+		List<GalleryVo> list  = galleryService.getImageList();
 		model.addAttribute("list", list);
+//		Logger.debug("list");
+//		System.out.println(list);
 		return "gallery/index";
 	}
 	
 	@RequestMapping("/upload")
 	public String upload(
-			@RequestParam("comments") String comments, 
+//			@RequestParam("comments") String comments, 
 			@RequestParam("file") MultipartFile multipartFile,
 			GalleryVo galleryVo) {
 //		System.out.println(comments);
@@ -48,7 +50,7 @@ public class GalleryController {
 		
 	@RequestMapping("/delete/{no}")
 	public String delete(@PathVariable("no") Long no) {
-		System.out.println(no);
+//		System.out.println(no);
 		galleryService.removeImages(no);
 		return "redirect:/gallery";
 	}
