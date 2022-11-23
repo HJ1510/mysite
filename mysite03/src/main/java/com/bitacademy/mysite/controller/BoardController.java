@@ -55,18 +55,24 @@ public class BoardController {
 		model.addAttribute("title", boardVo.getTitle());
 		model.addAttribute("contents", boardVo.getContents());
 		model.addAttribute("userNo", boardVo.getUserNo()); 
-		boardService.hitCountUp(boardVo);
+		boardService.hitCountUp(no);
 //		System.out.println("1:"+ model);		
-		System.out.println("1:"+ boardVo);		
+//		System.out.println("1vo:"+ boardVo);		
 		return "board/view";
 	}
 	
 	@Auth
-	@RequestMapping({"/delete/{no}", "delete"})
-	public String delete(@PathVariable("no") Long no, Long userNo) {
-		boardService.deleteContents(no, userNo);		
+	@RequestMapping({"/delete/{no}/{userNo}", "/delete/{no}", "delete"})
+	public String delete(@PathVariable("no") Long no) {
+		boardService.deleteContents(no);
 		return "redirect:/board";
 	}
+	
+//	public String delete(@PathVariable("no") Long no, @PathVariable(value="userNo", required=false) Long userNo) {
+//			boardService.deleteContents(no, userNo);		
+//		return "redirect:/board";
+//	}
+	
 	
 	@Auth
 	@RequestMapping(value = {"/modify/{no}", "/modify"}, method = RequestMethod.GET)

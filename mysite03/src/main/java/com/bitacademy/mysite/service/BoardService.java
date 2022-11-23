@@ -41,19 +41,28 @@ public class BoardService {
 	}
 	
 	
-	public void hitCountUp(BoardVo vo) {
-		boardRepository.hitCountUp(vo);
-		System.out.println("hit2"+vo);
+	
+	
+	public void deleteContents(Long no) {
+		boardRepository.deleteByNo(no);
 	}
 	
-	public void deleteContents(Long no, Long userNo) {
-		boardRepository.deleteByNo(userNo);
-		
-	}
+//	public void deleteContents(Long no, Long userNo) {
+//		
+//		if(userNo == null) {
+//			return;
+//		}
+//		
+//		boardRepository.deleteByNoAndUserNo(no, userNo);
+//	}
 	
 	public void updateContents(BoardVo vo) {
 		boardRepository.update(vo);
-		System.out.println("2:"+vo);
+//		System.out.println("2:"+vo);		
+	}
+
+	public void hitCountUp(Long no) {
+		boardRepository.hitCountUp(no);
 		
 	}
 

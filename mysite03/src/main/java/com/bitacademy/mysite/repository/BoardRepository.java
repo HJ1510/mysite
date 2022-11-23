@@ -1,6 +1,8 @@
 package com.bitacademy.mysite.repository;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,9 +59,7 @@ public class BoardRepository {
 ////		return result;
 ////	}
 	
-	public void hitCountUp(BoardVo vo) {
-		sqlSession.update("board.hitCountUp", vo);
-	}
+
 
 	public boolean update(BoardVo vo) {
 		int count = sqlSession.update("board.update", vo);
@@ -71,7 +71,15 @@ public class BoardRepository {
 		int count = sqlSession.delete("board.deleteByNo", no);
 		return count == 1;
 	}
-
+	
+//	public Boolean deleteByNoAndUserNo(Long no, Long userNo) {
+//		Map<String, Object> map = new HashMap<>();
+//		map.put("no", no);
+//		map.put("userNo", userNo);		
+//		return sqlSession.selectOne("board.deleteByNoAndUserNo", map);
+//		
+//	}
+	
 	public List<BoardVo> findAll() {
 		return sqlSession.selectList("board.findAll");
 	}
@@ -85,7 +93,9 @@ public class BoardRepository {
 //		System.out.println("3:"+no);
 		return sqlSession.selectOne("board.findByNo", no);
 	}
-	
 
+	public void hitCountUp(Long no) {
+		sqlSession.update("board.hitCountUp", no);	
+	}
 
 }

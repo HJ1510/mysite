@@ -25,18 +25,22 @@
 		]]>	
 	</delete>
 	
+	<delete id="deleteByNoAndUserNo" parameterType="map">
+		<![CDATA[
+		delete from board where no = #{no } and user_no= #{userNo }
+		]]>	
+	</delete>
+	
 	<update id="update" parameterType="boardvo">
 		<![CDATA[
 		update board set title=#{title }, contents=#{contents } where no=#{no }
 		]]>
 	</update>
 	
-	<update id="hitCountUp" parameterType="boardvo">
+	<update id="hitCountUp" parameterType="Long">
 		<![CDATA[
 		update board set hit=hit+1 where no=#{no }
 		]]>
-	</update>
-	
-	
+	</update>	
 	
 </mapper>
