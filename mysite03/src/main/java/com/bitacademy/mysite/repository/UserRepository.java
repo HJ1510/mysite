@@ -6,7 +6,6 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.util.StopWatch;
 
 import com.bitacademy.mysite.vo.UserVo;
 
@@ -26,21 +25,10 @@ public class UserRepository {
 	}
 
 	public UserVo findByEmailAndPassword(String email, String password) {
-		StopWatch sw = new StopWatch();
-		sw.start();
-		
 		Map<String, Object> map = new HashMap<>();
 		map.put("email", email);
 		map.put("password", password);
-		
-		UserVo result = sqlSession.selectOne("user.findByEmailAndPassword", map);
-		
-		sw.stop();
-		Long totalTime=sw.getTotalTimeMillis();
-		System.out.println("------>" + totalTime);
-		
-		return result;
-		
+		return sqlSession.selectOne("user.findByEmailAndPassword", map);	
 	}
 
 	public Boolean insert(UserVo vo) {
