@@ -1,0 +1,20 @@
+(O)bject (O)riented (P)rogramming 객체지향
+
+(A)spect (O)riented (P)rogramming 관점지향
+횡단 관심 사항 분리
+핵심 관심 중심으로 코드 작성
+
+		what 실행     when? 				where?
+java	↓method		↓method 실행시점		↓which method
+		(advice)    (Join Point)		(Point Cut)
+	
+	
+-Join Point
+1. before
+2. after
+3. after returning
+4. after throwing
+5. around (before+after) **자주 사용
+
+-Spring에서는 @Aspect로 전체를 표시하고 advice를 기반으로 method에 annotation으로 표시 @Before(...Point Cut...)
+
