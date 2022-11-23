@@ -38,18 +38,22 @@ public class AuthInterceptor implements HandlerInterceptor {
 			return false;
 		}
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
-			if (authUser ==null ) {
+			if (authUser == null ) {
 				response.sendRedirect(request.getContextPath()+"/user/login");
 				return false;
 			}
 			
-		// 6. role(권한) 체크하기 ("user" or "admin")
-		String role =auth.role();
-		String authUserRole = authUser.getRole();
-		
+		// 6. role(권한) 체크하기 ("user" or "admin") user로 들어오면 메인으로...???
+		String role = auth.role();
+		String authUserRole = authUser.getRole(); 
+//		System.out.println(authUserRole);
+//		System.out.println(role);
+		if(!authUserRole.equals(role)) {
+			response.sendRedirect(request.getContextPath());
+			return false;
+		}	
+
 		// 7. @Auth도 붙어 있고 인증도 되어있고 권한도 있음
-	
-			
 		return true;
 	}
 

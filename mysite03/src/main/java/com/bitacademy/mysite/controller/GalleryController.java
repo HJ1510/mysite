@@ -29,12 +29,11 @@ public class GalleryController {
 	public String list(Model model) {
 		List<GalleryVo> list  = galleryService.getImageList();
 		model.addAttribute("list", list);
-//		Logger.debug("list");
 //		System.out.println(list);
 		return "gallery/index";
 	}
 	
-	@Auth  // 업로드는 인증유저면 모두
+	@Auth(role="admin")
 	@RequestMapping("/upload")
 	public String upload(
 //			@RequestParam("comments") String comments, 

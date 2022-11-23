@@ -50,7 +50,7 @@ $(function(){
 			<div id="gallery">
 				<div>
 					<h1>갤러리</h1>
-					<c:if test="${not empty authUser }">
+					<c:if test="${not empty authUser && authUser.role =='admin' }">
 						<a href="" id="upload-image">이미지 올리기</a>
 					</c:if>
 				</div>
