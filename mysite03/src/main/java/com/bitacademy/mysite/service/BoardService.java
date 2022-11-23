@@ -31,7 +31,7 @@ public class BoardService {
 	
 	public void addContents(BoardVo vo) {
 		boardRepository.insert(vo);
-//		System.out.println("2:"+vo);
+		System.out.println("2:"+vo);
 		//답글여부 확인해서 처리 groupNo==null
 	}
 	
@@ -39,22 +39,20 @@ public class BoardService {
 //		System.out.println("2:"+no);
 		return boardRepository.findByNo(no); //hit++
 	}
+		
 	
-	
-	
-	
-	public void deleteContents(Long no) {
-		boardRepository.deleteByNo(no);
-	}
-	
-//	public void deleteContents(Long no, Long userNo) {
-//		
-//		if(userNo == null) {
-//			return;
-//		}
-//		
-//		boardRepository.deleteByNoAndUserNo(no, userNo);
+//	public void deleteContents(Long no) {
+//		boardRepository.deleteByNo(no);
 //	}
+	
+	public void deleteContents(Long no, Long userNo) {
+		
+		if(userNo == null) {
+			return;
+		}
+		
+		boardRepository.deleteByNoAndUserNo(no, userNo);
+	}
 	
 	public void updateContents(BoardVo vo) {
 		boardRepository.update(vo);

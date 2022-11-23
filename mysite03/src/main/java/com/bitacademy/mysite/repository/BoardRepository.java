@@ -63,22 +63,22 @@ public class BoardRepository {
 
 	public boolean update(BoardVo vo) {
 		int count = sqlSession.update("board.update", vo);
-//		System.out.println("3:"+vo);
+		System.out.println("3:"+vo);
 		return count == 1;
 	}
 
-	public Boolean deleteByNo(Long no) {
-		int count = sqlSession.delete("board.deleteByNo", no);
-		return count == 1;
-	}
-	
-//	public Boolean deleteByNoAndUserNo(Long no, Long userNo) {
-//		Map<String, Object> map = new HashMap<>();
-//		map.put("no", no);
-//		map.put("userNo", userNo);		
-//		return sqlSession.selectOne("board.deleteByNoAndUserNo", map);
-//		
+//	public Boolean deleteByNo(Long no) {
+//		int count = sqlSession.delete("board.deleteByNo", no);
+//		return count == 1;
 //	}
+	
+	public Boolean deleteByNoAndUserNo(Long no, Long userNo) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("no", no);
+		map.put("userNo", userNo);		
+		return sqlSession.selectOne("board.deleteByNoAndUserNo", map);
+		
+	}
 	
 	public List<BoardVo> findAll() {
 		return sqlSession.selectList("board.findAll");

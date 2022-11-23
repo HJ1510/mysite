@@ -44,8 +44,10 @@ public class BoardController {
 	@RequestMapping(value = "/write/{no}", method = RequestMethod.POST) // 완료
 	public String write(@PathVariable("no") Long no, BoardVo vo ) {
 		vo.setUserNo(no);
-//		System.out.println("1:"+vo);
+		System.out.println("1:"+vo);
 		boardService.addContents(vo);
+		System.out.println("no:"+vo.getNo());
+		System.out.println("uno:"+vo.getUserNo());
 		return "redirect:/board";
 	}
 	
@@ -63,15 +65,15 @@ public class BoardController {
 	
 	@Auth
 	@RequestMapping({"/delete/{no}/{userNo}", "/delete/{no}", "delete"})
-	public String delete(@PathVariable("no") Long no) {
-		boardService.deleteContents(no);
-		return "redirect:/board";
-	}
-	
-//	public String delete(@PathVariable("no") Long no, @PathVariable(value="userNo", required=false) Long userNo) {
-//			boardService.deleteContents(no, userNo);		
+//	public String delete(@PathVariable("no") Long no) {
+//		boardService.deleteContents(no);
 //		return "redirect:/board";
 //	}
+	
+	public String delete(@PathVariable("no") Long no, @PathVariable(value="userNo", required=false) Long userNo) {
+			boardService.deleteContents(no, userNo);		
+		return "redirect:/board";
+	}
 	
 	
 	@Auth
@@ -87,9 +89,23 @@ public class BoardController {
 	
 	@Auth
 	@RequestMapping(value = {"/modify/{no}"}, method = RequestMethod.POST)
-	public String modify(@PathVariable("no") Long no, BoardVo vo ) {
+	public String modify(@PathVariable("no") Long no, BoardVo vo) {
 		boardService.updateContents(vo);
 //		System.out.println("1:"+vo);
 		return "redirect:/board/view/{no}";
+	}
+	
+	@Auth
+	@RequestMapping(value = {"/reply/{no}", "/reply"}, method = RequestMethod.GET)
+	public String reply(Model model) {
+		
+		return "board/reply";
+	}
+	
+	@Auth
+	@RequestMapping(value = {"/reply/{no}"}, method = RequestMethod.POST)
+	public String reply(BoardVo vo) {
+		
+		return "redirect:/board";
 	}
 }
