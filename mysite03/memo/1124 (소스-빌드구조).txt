@@ -1,0 +1,52 @@
+
+
+XML Config
+	자동(annotation scanning)
+	수동(명시적으로 빈 설정)
+	
+JAVA Config
+	자동(annotation scanning)
+	수동(명시적으로 빈 설정)
+
+user: xml, java config
+com.bitacademy.container.user
+com.bitacademy.container.user.soundsystem (Java Config Auto)
+	|-CompactDisc.java
+	|-HighSchoolRapper2.java
+	|-CDPlayer.java
+com.bitacademy.container.user.videosystem (Java Config Explicity)
+	|-DigitalVideoDisc.java
+	|-HighSchoolRapper2.java
+	|-DVDPlayer.java
+com.bitacademy.container.user.test
+com.bitacademy.container.config.user
+com.bitacademy.container.config.soundsystem =>auto
+com.bitacademy.container.config.videosystem =>explicity
+
+[src/test/java]
+	com.bitacademy.container.config.soundsystem (Java Config Auto)
+		
+
+[container.jar]
+	com
+		|-bitacademy
+			|-container
+				|-user
+					|-user
+					|	|-test
+					|	|	|-XmlCongifTest.class
+					|	|	|-JavaCongifTest.class
+					|	|-User.01.class
+					|	|-User.class
+					|	|-Friend.class
+					|-config
+						|-user
+							|-AppConfig01.class
+							|-AppConfig02.class
+							|-applicationContext01.xml
+							|-applicationContext02.xml
+
+
+soundsystem: java config
+com.bitacademy.container.soundsystem : java config / xml config : auto
+com.bitacademy.container.videosystem : java config / xml config : explicity
