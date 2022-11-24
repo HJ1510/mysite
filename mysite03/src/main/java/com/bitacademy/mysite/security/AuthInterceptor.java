@@ -43,12 +43,10 @@ public class AuthInterceptor implements HandlerInterceptor {
 				return false;
 			}
 			
-		// 6. role(권한) 체크하기 ("user" or "admin") user로 들어오면 메인으로...???
+		// 6. role(권한) 체크하기 ("user" or "admin") user가 admin 권한이 필요한 기능에 접근하면 메인으로
 		String role = auth.role();
 		String authUserRole = authUser.getRole(); 
-		System.out.println(authUserRole);
-		System.out.println(role);
-		if(!authUserRole.equals(role)) {
+		if("admin".equals(role) && "user".equals(authUserRole)) {
 			response.sendRedirect(request.getContextPath());
 			return false;
 		}	

@@ -33,8 +33,8 @@ public class GalleryController {
 		return "gallery/index";
 	}
 	
-	@Auth(role="admin")
-	@RequestMapping("/upload")
+	@Auth
+	@RequestMapping("/upload") // 업로드는 로그인된 사용자 모두
 	public String upload(
 //			@RequestParam("comments") String comments, 
 			@RequestParam("file") MultipartFile multipartFile,
