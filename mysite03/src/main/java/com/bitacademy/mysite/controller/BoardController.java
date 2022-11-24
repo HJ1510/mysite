@@ -96,21 +96,24 @@ public class BoardController {
 	}
 	
 	@Auth
-	@RequestMapping(value = {"/reply/{no}", "/reply"}, method = RequestMethod.GET)
+	@RequestMapping(value = {"/reply/{no}/{userNo}", "/reply"}, method = RequestMethod.GET)
 	public String reply(@PathVariable("no") Long no, BoardVo vo, Model model) {
 		BoardVo boardVo = boardService.findContentsForReply(no);
+		model.addAttribute("title", boardVo.getTitle()); 
+		model.addAttribute("contents", boardVo.getContents()); 
 		model.addAttribute("groupNo", boardVo.getGroupNo()); 
 		model.addAttribute("orderNo", boardVo.getOrderNo()); 
 		model.addAttribute("depth", boardVo.getDepth()); 
-		model.addAttribute("title", boardVo.getTitle()); 
 		System.out.println(boardVo);
 		return "board/reply";
 	}
 	
 	@Auth
-	@RequestMapping(value = {"/reply/{no}"}, method = RequestMethod.POST)
-	public String reply(BoardVo vo) {
+	@RequestMapping(value = {"/reply/{no}/{userNo}"}, method = RequestMethod.POST)
+	public String reply(@PathVariable("no") Long no, @PathVariable("userNo") Long userNo, BoardVo vo) {
+		vo.setUserNo(userNo);
 		boardService.replyContents(vo);
+		System.out.println(vo);
 		return "redirect:/board";
 	}
 }

@@ -15,10 +15,10 @@
 		<c:import url="/WEB-INF/views/includes/header.jsp"></c:import>
 		<div id="content">
 			<div id="board">
-				<form class="board-form" method="post" action="${pageContext.request.contextPath }/board/reply/${no }">
-					<input type = "text" name = "groupNo" value="groupNo${groupNo }">
-					<input type = "text" name = "orderNo" value="orderNo${orderNo }">
-					<input type = "text" name = "depth" value="depth${depth }">
+				<form class="board-form" method="post" action="${pageContext.request.contextPath }/board/reply/${no }/${authUser.no}">
+					<input type = "text" name = "groupNo" value="${groupNo }">
+					<input type = "text" name = "orderNo" value="${orderNo }">
+					<input type = "text" name = "depth" value="${depth }">
 					
 					
 					<table class="tbl-ex">
@@ -32,7 +32,7 @@
 						<tr>
 							<td class="label">내용</td>
 							<td>
-								<textarea id="content" name="content"></textarea>
+								<textarea id="content" name="contents">re: ${contents }</textarea>
 							</td>
 						</tr>
 					</table>

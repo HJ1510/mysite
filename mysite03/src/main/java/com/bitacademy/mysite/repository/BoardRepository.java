@@ -59,8 +59,7 @@ public class BoardRepository {
 	
 	public Boolean replyInsert(BoardVo vo) {
 		int count = sqlSession.insert("board.replyInsert", vo);
-		return count == 1;
-		
+		return count == 1;		
 	}
 
 }

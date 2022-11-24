@@ -48,11 +48,9 @@ public class BoardService {
 //	}
 	
 	public void deleteContents(Long no, Long userNo) {
-		
 		if(userNo == null) {
 			return;
-		}
-		
+		}		
 		boardRepository.deleteByNoAndUserNo(no, userNo);
 	}
 	
@@ -71,8 +69,7 @@ public class BoardService {
 	}
 	
 	public void replyContents(BoardVo vo) {
-		boardRepository.replyInsert(vo);
-		
+		boardRepository.replyInsert(vo);		
 	}
 
 }

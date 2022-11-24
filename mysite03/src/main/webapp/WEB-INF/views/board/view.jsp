@@ -42,7 +42,7 @@
 					<a href="${pageContext.request.contextPath }/board/modify/${no }">글수정</a> <!-- 본인의 글일때만 보여야 authUser no= vo의 userno -->
 					<a href="${pageContext.request.contextPath }/board/delete/${no }/${userNo }">삭제</a>
 					</c:if>	
-					<a href="${pageContext.request.contextPath }/board/reply/${no }">답글</a>
+					<a href="${pageContext.request.contextPath }/board/reply/${no }/${authUser.no}">답글</a>
 				</div>
 			</div>
 		</div>
