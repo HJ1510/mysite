@@ -15,7 +15,7 @@
 	
 	<insert id="insert" parameterType="boardvo" >
 		<![CDATA[
-		insert into board values(null, #{title } , #{contents } , 0 , now(), 1 , 1 , 0, #{userNo })
+		insert into board values(null, #{title } , #{contents } , 0 , now(), (select max(group_no)+1 from board b) , 1 , 0, #{userNo })
 		]]>	
 	</insert>
 	
@@ -42,5 +42,18 @@
 		update board set hit=hit+1 where no=#{no }
 		]]>
 	</update>	
+	
+	<select id="findByNoForReply" resultType="boardvo">
+		<![CDATA[
+		select group_no as groupNo, order_no as orderNo, depth  from board where no= #{no }
+		]]>
+	</select>
+	
+	<insert id="replyInsert" parameterType="boardvo" >
+		<![CDATA[
+		insert into board values(null, #{title } , #{contents } , 0 , now(), #{group_no } , 1 , 0, #{userNo })
+		]]>	
+	</insert>
+	
 	
 </mapper>

@@ -42,12 +42,12 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "/write/{no}", method = RequestMethod.POST) // 완료
-	public String write(@PathVariable("no") Long no, BoardVo vo ) {
+	public String write(@PathVariable("no") Long no, BoardVo vo) {
 		vo.setUserNo(no);
-		System.out.println("1:"+vo);
+//		System.out.println("1:"+vo);
 		boardService.addContents(vo);
-		System.out.println("no:"+vo.getNo());
-		System.out.println("uno:"+vo.getUserNo());
+//		System.out.println("no:"+vo.getNo());
+//		System.out.println("uno:"+vo.getUserNo());
 		return "redirect:/board";
 	}
 	
@@ -97,15 +97,20 @@ public class BoardController {
 	
 	@Auth
 	@RequestMapping(value = {"/reply/{no}", "/reply"}, method = RequestMethod.GET)
-	public String reply(Model model) {
-		
+	public String reply(@PathVariable("no") Long no, BoardVo vo, Model model) {
+		BoardVo boardVo = boardService.findContentsForReply(no);
+		model.addAttribute("groupNo", boardVo.getGroupNo()); 
+		model.addAttribute("orderNo", boardVo.getOrderNo()); 
+		model.addAttribute("depth", boardVo.getDepth()); 
+		model.addAttribute("title", boardVo.getTitle()); 
+		System.out.println(boardVo);
 		return "board/reply";
 	}
 	
 	@Auth
 	@RequestMapping(value = {"/reply/{no}"}, method = RequestMethod.POST)
 	public String reply(BoardVo vo) {
-		
+		boardService.replyContents(vo);
 		return "redirect:/board";
 	}
 }

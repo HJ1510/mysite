@@ -16,9 +16,9 @@
 		<div id="content">
 			<div id="board">
 				<form class="board-form" method="post" action="${pageContext.request.contextPath }/board/reply/${no }">
-					<input type = "text" name = "groupNo" value="groupNo${vo.groupNo }">
-					<input type = "text" name = "orderNo" value="orderNo${vo.orderNo }">
-					<input type = "text" name = "depth" value="depth${vo.depth }">
+					<input type = "text" name = "groupNo" value="groupNo${groupNo }">
+					<input type = "text" name = "orderNo" value="orderNo${orderNo }">
+					<input type = "text" name = "depth" value="depth${depth }">
 					
 					
 					<table class="tbl-ex">
@@ -27,7 +27,7 @@
 						</tr>
 						<tr>
 							<td class="label">제목</td>
-							<td><input type="text" name="title" value="re: ${boardVo.title }"></td>
+							<td><input type="text" name="title" value="re: ${title }"></td>
 						</tr>
 						<tr>
 							<td class="label">내용</td>

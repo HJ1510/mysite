@@ -16,54 +16,9 @@ public class BoardRepository {
 	@Autowired
 	private SqlSession sqlSession;
 	
-////	public Boolean replyInsert(BoardVo vo) {
-////		boolean result = false;
-////
-////		Connection conn = null;
-////		PreparedStatement pstmt = null;
-////
-////		try {
-////			conn = getConnection();
-////
-////			String sql = "insert into board values(null, ? , ? , 0 , now(), ? , ? , ?, ?)";
-////			pstmt = conn.prepareStatement(sql);
-////
-////			pstmt.setString(1, vo.getTitle());
-////			pstmt.setString(2, vo.getContents());
-////			pstmt.setInt(3, vo.getGroupNo());
-////			pstmt.setInt(4, vo.getOrderNo());
-////			pstmt.setInt(5, vo.getDepth());
-////			pstmt.setLong(6, vo.getUserNo());
-////			//
-////
-////			int count = pstmt.executeUpdate();
-////
-////			result = count == 1;
-////
-////		} catch (SQLException e) {
-////			System.out.println("Error:" + e);
-////		} finally {
-////			try {
-////				if (pstmt != null) {
-////					pstmt.close();
-////				}
-////
-////				if (conn != null) {
-////					conn.close();
-////				}
-////			} catch (SQLException e) {
-////				e.printStackTrace();
-////			}
-////		}
-////
-////		return result;
-////	}
-	
-
-
 	public boolean update(BoardVo vo) {
 		int count = sqlSession.update("board.update", vo);
-		System.out.println("3:"+vo);
+//		System.out.println("3:"+vo);
 		return count == 1;
 	}
 
@@ -96,6 +51,16 @@ public class BoardRepository {
 
 	public void hitCountUp(Long no) {
 		sqlSession.update("board.hitCountUp", no);	
+	}
+
+	public BoardVo findByNoForReply(Long no) {
+		return sqlSession.selectOne("board.findByNoForReply", no);
+	}
+	
+	public Boolean replyInsert(BoardVo vo) {
+		int count = sqlSession.insert("board.replyInsert", vo);
+		return count == 1;
+		
 	}
 
 }

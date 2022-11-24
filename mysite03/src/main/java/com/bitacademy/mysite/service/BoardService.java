@@ -15,6 +15,8 @@ public class BoardService {
 	@Autowired
 	private BoardRepository boardRepository;
 	
+
+	
 	public List<BoardVo> getContents(){
 		return boardRepository.findAll();
 	}
@@ -31,7 +33,7 @@ public class BoardService {
 	
 	public void addContents(BoardVo vo) {
 		boardRepository.insert(vo);
-		System.out.println("2:"+vo);
+//		System.out.println("2:"+vo);
 		//답글여부 확인해서 처리 groupNo==null
 	}
 	
@@ -61,6 +63,15 @@ public class BoardService {
 
 	public void hitCountUp(Long no) {
 		boardRepository.hitCountUp(no);
+		
+	}
+
+	public BoardVo findContentsForReply(Long no) {	
+		return boardRepository.findByNoForReply(no);
+	}
+	
+	public void replyContents(BoardVo vo) {
+		boardRepository.replyInsert(vo);
 		
 	}
 
