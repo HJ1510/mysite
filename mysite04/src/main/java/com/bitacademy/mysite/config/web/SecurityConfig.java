@@ -14,7 +14,7 @@ import com.bitacademy.mysite.security.AuthUserHandlerMethodArgumentResolver;
 import com.bitacademy.mysite.security.LoginInterceptor;
 import com.bitacademy.mysite.security.LogoutInterceptor;
 
-@Configuration //!!!!
+@Configuration
 public class SecurityConfig implements WebMvcConfigurer {
 	
 	// Argument Resolvers

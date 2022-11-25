@@ -74,4 +74,13 @@ public class UserController {
 		return "redirect:/user/update";
 	}
 
+	
+	//web MVC Config
+	@RequestMapping("/auth")
+	public void auth() {
+	}
+	
+	@RequestMapping("/logout")
+	public void logout() {
+	}
 }
