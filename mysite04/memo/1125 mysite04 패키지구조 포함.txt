@@ -8,6 +8,13 @@ com.bitacademy.mysite.config
 com.bitacademy.mysite.config.app
 	|-DBConfig
 	|-MyBatisConfig
+com.bitacademy.mysite.config.web
+	|-MVCConfig
+	|-SecurityConfig
+	|-FileuploadConfig
+	|-MessageResourceConfig
+	
+	
 [src/main/resource]
 com.bitacademy.mysite.config.app
 	|-jdbc.properties
@@ -16,7 +23,9 @@ com.bitacademy.mysite.config.app.mybatis
 com.bitacademy.mysite.config.app.mybatis.mappers
 	|-user.xml
 	|-board.xml
-
+	|-...
+com.bitacademy.mysite.config.web
+	|-fileupload.properties
 							
 	
 Web Application Context
@@ -39,11 +48,11 @@ com
 				|	|-DBConfig.class
 				|	|-MyBatisConfig.class
 				|	|-jdbc.properties
-				|		|-/mybatis
-				|			|-configuration.xml
-				|			|-mappers
-				|				|-user.xml
-				|				|-board.xml	
+				|	|-/mybatis
+				|		|-configuration.xml
+				|		|-/mappers
+				|			|-user.xml
+				|			|-board.xml	
 				|-/web
 				|	|-
 								
