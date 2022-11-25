@@ -7,7 +7,7 @@
 		]]>
 	</select>
 	
-	<select id="findByNo" resultType="boardvo">
+	<select id="findByNo" resultType="boardvo"> <!-- 완료 -->
 		<![CDATA[
 		select title , contents, user_no as userNo from board where no= #{no }
 		]]>
@@ -37,7 +37,7 @@
 		]]>
 	</update>
 	
-	<update id="hitCountUp" parameterType="Long">
+	<update id="hitCountUp" parameterType="Long"> <!-- 완료 -->
 		<![CDATA[
 		update board set hit=hit+1 where no=#{no }
 		]]>

@@ -43,7 +43,7 @@
 						<td>${vo.regDate }</td>
 						<td>
 							<c:if test="${authUser.no == vo.userNo }">
-							<a href="board/delete/${vo.no }/${vo.userNo }" class="del">삭제</a>
+							<a href="board/delete/${vo.no }" class="del">삭제</a>
 							</c:if>
 						</td>
 					</tr>

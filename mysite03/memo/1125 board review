@@ -1,0 +1,55 @@
+WebUtil.java => 검색할때 url에 한글 표시
+
+	<select id="totalCount" parameterType="string" resultType="integer">
+		<choose>
+			<when test="_parameter == null or _parameter == ''"> // test절에 값 들어갈때는 _parameter 이렇게 표시
+				<![CDATA[
+				select count(*) from board
+				]]>				
+			</when>
+			<otherwise>
+				<![CDATA[
+				select count(*) 
+				  from board
+				 where (title like '%${_parameter }%' or contents like '%${_parameter  }%') // '%${_parameter }%'
+				]]>				
+			</otherwise>
+		</choose>	
+	</select>
+	
+		<select id="findAllByPageAndKeword" parameterType="map" resultType="boardvo">
+		<choose>
+			<when test="keyword == null or keyword == ''">
+				<![CDATA[
+				  select a.no,
+				  		 a.title,
+				  		 a.hit,
+				  		 date_format(a.reg_date, '%Y-%m-%d %p %h:%i:%s') as regDate,
+				  		 a.depth,
+				  		 b.name as userName,
+				  		 a.user_no as userNo
+					from board a, user b
+				   where a.user_no = b.no
+				order by group_no desc, order_no asc
+				   limit #{startIndex }, #{size }				
+				]]>
+			</when>
+			<otherwise>
+				<![CDATA[
+				  select a.no,
+				  		 a.title,
+				  		 a.hit,
+				  		 date_format(a.reg_date, '%Y-%m-%d %p %h:%i:%s') as regDate,
+				  		 a.depth, 
+				  		 b.name as userName,
+				  		 a.user_no as userNo
+				  	from board a, user b
+				   where a.user_no = b.no
+				     and (title like '%${keyword }%' or contents like '%${keyword }%')
+				      //'%${keyword }%' #{keyword }의 차이!! ${keyword }는 like절 %%때문에 생긴것
+				order by group_no desc, order_no asc
+				   limit #{startIndex }, #{size }				
+				]]>			
+			</otherwise>
+		</choose>
+	</select>

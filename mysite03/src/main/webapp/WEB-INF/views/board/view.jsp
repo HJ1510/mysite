@@ -24,13 +24,13 @@
 
 					<tr>
 						<td class="label">제목</td>
-						<td>${title }</td>
+						<td>${boardVo.title }</td>
 					</tr>
 					<tr>
 						<td class="label">내용</td>
 						<td>						
 							<div class="view-content">
-							${fn:replace(contents, newLine , '<br/>' )}
+							${fn:replace(boardVo.contents, newLine , '<br/>' )}
 							</div>							
 						</td>						
 					</tr>
@@ -38,9 +38,9 @@
 			
 				<div class="bottom">
 					<a href="${pageContext.request.contextPath }/board">글목록</a>		
-					<c:if test="${authUser.no == userNo }">		
+					<c:if test="${authUser.no == boardVo.userNo }">		
 					<a href="${pageContext.request.contextPath }/board/modify/${no }">글수정</a> <!-- 본인의 글일때만 보여야 authUser no= vo의 userno -->
-					<a href="${pageContext.request.contextPath }/board/delete/${no }/${userNo }">삭제</a>
+					<a href="${pageContext.request.contextPath }/board/delete/${no }">삭제</a>
 					</c:if>	
 					<a href="${pageContext.request.contextPath }/board/reply/${no }/${authUser.no}">답글</a>
 				</div>

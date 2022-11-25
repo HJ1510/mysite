@@ -44,7 +44,7 @@ public class BoardRepository {
 		return count == 1;
 	}
 	
-	public BoardVo findByNo(Long no) {
+	public BoardVo findByNo(Long no) { //view 완
 //		System.out.println("3:"+no);
 		return sqlSession.selectOne("board.findByNo", no);
 	}

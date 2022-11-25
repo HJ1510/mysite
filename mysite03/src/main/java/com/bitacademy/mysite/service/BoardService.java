@@ -11,25 +11,26 @@ import com.bitacademy.mysite.vo.BoardVo;
 
 @Service
 public class BoardService {
-	
+	private static final int LIST_SIZE = 10; // 페이지당 게시물 수
+	private static final int PAGE_SIZE = 2; // index 하단에 표시되는 페이지 수
+		
 	@Autowired
 	private BoardRepository boardRepository;
 	
-
 	
-	public List<BoardVo> getContents(){
-		return boardRepository.findAll();
-	}
-	
-//	public Map<String, Object> findContentsList(int currentPage){
-//		// 리스트 가져오기
-//		boardRepository.findAll();
-//		// view의 페이징을 처리하기 위한 데이터의 값 계산
-//		int beginPage=0;
-//		int endPage=0;
-//		
-//		return null;
+//	public List<BoardVo> getContentsList(){
+//		return boardRepository.findAll();
 //	}
+	
+	public Map<String, Object> getContentsList(int currentPage){
+		// 리스트 가져오기
+		boardRepository.findAll();
+		// view의 페이징을 처리하기 위한 데이터의 값 계산
+		int beginPage=0;
+		int endPage=0;
+		
+		return null;
+	}
 	
 	public void addContents(BoardVo vo) {
 		boardRepository.insert(vo);
@@ -37,9 +38,14 @@ public class BoardService {
 		//답글여부 확인해서 처리 groupNo==null
 	}
 	
-	public BoardVo findContents(Long no) {	
-//		System.out.println("2:"+no);
-		return boardRepository.findByNo(no); //hit++
+	public BoardVo getContents(Long no) {	//view 완
+		BoardVo boardVo = boardRepository.findByNo(no);
+		
+		if(boardVo != null) {
+			boardRepository.hitCountUp(no);
+		}
+//		System.out.println("2:"+boardVo);
+		return boardVo; //hit++
 	}
 		
 	
@@ -57,11 +63,6 @@ public class BoardService {
 	public void updateContents(BoardVo vo) {
 		boardRepository.update(vo);
 //		System.out.println("2:"+vo);		
-	}
-
-	public void hitCountUp(Long no) {
-		boardRepository.hitCountUp(no);
-		
 	}
 
 	public BoardVo findContentsForReply(Long no) {	

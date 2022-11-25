@@ -1,11 +1,14 @@
 package com.bitacademy.mysite.controller;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bitacademy.mysite.security.Auth;
 import com.bitacademy.mysite.service.BoardService;
@@ -19,21 +22,17 @@ public class BoardController {
 	private BoardService boardService;
 	
 	@RequestMapping({"/list", ""}) // 임시완료
-	public String list(Model model) {
-		model.addAttribute("list", boardService.getContents());
-		return "board/list";		
+//	public String list(Model model) {
+//		model.addAttribute("list", boardService.getContentsList());
+//		return "board/list";		
+//	}
+	
+	public String list(@RequestParam(value="p", required=true, defaultValue="1") Integer page, @RequestParam(value="kwd", required=true, defaultValue="") String keyword, Model model){
+		boardService.getContentsList(0);
+		
+		return "board/list";
 	}
 	
-//	public Map<String, Object> findContentsList(int currentPage){
-//		// 리스트 가져오기
-//		
-//		// view의 페이징을 처리하기 위한 데이터의 값 계산
-//		int beginPage=0;
-//		int endPage=0;
-//		
-//		return null;
-//	}
-//	
 	@Auth
 	@RequestMapping(value = {"/write/{no}", "/write"}, method = RequestMethod.GET) // 완료
 	public String write(@PathVariable("no") Long no, Model model) {
@@ -51,20 +50,15 @@ public class BoardController {
 		return "redirect:/board";
 	}
 	
-	@RequestMapping("/view/{no}")
+	@RequestMapping("/view/{no}") // 완
 	public String view(@PathVariable("no") Long no, Model model) {
-		BoardVo boardVo = boardService.findContents(no);
-		model.addAttribute("title", boardVo.getTitle());
-		model.addAttribute("contents", boardVo.getContents());
-		model.addAttribute("userNo", boardVo.getUserNo()); 
-		boardService.hitCountUp(no);
-//		System.out.println("1:"+ model);		
-//		System.out.println("1vo:"+ boardVo);		
+		BoardVo boardVo = boardService.getContents(no);
+		model.addAttribute("boardVo", boardVo);	
 		return "board/view";
 	}
 	
 	@Auth
-	@RequestMapping({"/delete/{no}/{userNo}", "/delete/{no}", "delete"})
+	@RequestMapping({"/delete/{no}"})
 //	public String delete(@PathVariable("no") Long no) {
 //		boardService.deleteContents(no);
 //		return "redirect:/board";
@@ -79,7 +73,7 @@ public class BoardController {
 	@Auth
 	@RequestMapping(value = {"/modify/{no}", "/modify"}, method = RequestMethod.GET)
 	public String modify(@PathVariable("no") Long no, Model model) {
-		BoardVo boardVo = boardService.findContents(no);
+		BoardVo boardVo = boardService.getContents(no);
 		model.addAttribute("no", no);
 		model.addAttribute("title", boardVo.getTitle());
 		model.addAttribute("contents", boardVo.getContents());
