@@ -37,6 +37,10 @@ public class BoardRepository {
 		return sqlSession.selectOne("board.findByNo", no);
 	}
 	
+	public void hitCountUp(Long no) {
+		sqlSession.update("board.hitCountUp", no);	
+	}
+	
 	public boolean update(BoardVo vo) {
 		int count = sqlSession.update("board.update", vo);
 //		System.out.println("3:"+vo);
@@ -54,17 +58,24 @@ public class BoardRepository {
 		map.put("userNo", userNo);		
 		sqlSession.selectOne("board.delete", map);
 	}
-
 	
 	public Boolean insert(BoardVo vo) {
 		int count = sqlSession.insert("board.insert", vo);
 		return count == 1;
 	}
 	
-
-
-	public void hitCountUp(Long no) {
-		sqlSession.update("board.hitCountUp", no);	
+	public int updateOrderNo(Integer groupNo, Integer orderNo) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("groupNo", groupNo);
+		map.put("orderNo", orderNo);
+		return sqlSession.update("board.updateOrederNo", map);
+	}
+	
+	public BoardVo findByNoAndUserNo(Long no, Long userNo) {
+		Map<String, Long> map = new HashMap<String, Long>();
+		map.put("no", no);
+		map.put("userNo", userNo);
+		return sqlSession.selectOne("board.findByNoAndUserNo", map);
 	}
 
 	public BoardVo findByNoForReply(Long no) {
@@ -75,6 +86,10 @@ public class BoardRepository {
 		int count = sqlSession.insert("board.replyInsert", vo);
 		return count == 1;		
 	}
+
+
+
+
 
 
 

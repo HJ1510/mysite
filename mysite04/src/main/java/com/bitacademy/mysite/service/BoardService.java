@@ -75,7 +75,11 @@ public class BoardService {
 //		System.out.println("2:"+boardVo);
 		return boardVo; //hit++
 	}
-		
+	
+	public BoardVo getContents(Long no, Long userNo) {
+		BoardVo boardVo = boardRepository.findByNoAndUserNo(no, userNo);
+		return boardVo;
+	}
 	
 //	public void deleteContents(Long no) {
 //		boardRepository.deleteByNo(no);
@@ -85,16 +89,20 @@ public class BoardService {
 		boardRepository.delete(boardNo, userNo);		
 	}
 	
-	public void addContents(BoardVo vo) {
-		boardRepository.insert(vo);
+	public void addContents(BoardVo boardVo) {
+		if (boardVo.getGroupNo() != null) {
+			increaseGroupOrderNo(boardVo);
+		}
+		
+		boardRepository.insert(boardVo);
 //		System.out.println("2:"+vo);
 		//답글여부 확인해서 처리 groupNo==null
 	}
 	
+	private boolean increaseGroupOrderNo(BoardVo boardVo) {
+		return boardRepository.updateOrderNo(boardVo.getGroupNo(), boardVo.getOrderNo()) > 0;
+	}
 
-	
-
-	
 	public void updateContents(BoardVo vo) {
 		boardRepository.update(vo);
 //		System.out.println("2:"+vo);		

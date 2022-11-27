@@ -24,25 +24,27 @@
 
 					<tr>
 						<td class="label">제목</td>
-						<td>${title }</td>
+						<td>${boardVo.title } no${boardVo.no }</td>
 					</tr>
 					<tr>
 						<td class="label">내용</td>
 						<td>						
 							<div class="view-content">
-							${fn:replace(contents, newLine , '<br/>' )}
+							${fn:replace(boardVo.contents, newLine , '<br/>' )}
 							</div>							
 						</td>						
 					</tr>
 				</table>
 			
 				<div class="bottom">
-					<a href="${pageContext.request.contextPath }/board">글목록</a>		
-					<c:if test="${authUser.no == userNo }">		
-					<a href="${pageContext.request.contextPath }/board/modify/${no }">글수정</a> <!-- 본인의 글일때만 보여야 authUser no= vo의 userno -->
-					<a href="${pageContext.request.contextPath }/board/delete/${no }/${userNo }">삭제</a>
+					<a href="${pageContext.request.contextPath }/board?p=${param.p }&kwd=${param.kwd }">글목록</a>		
+					<c:if test="${authUser.no == boardVo.userNo }">		
+						<a href="${pageContext.request.contextPath }/board/modify/${boardVo.no }?p=${param.p }&kwd=${param.kwd }">글수정</a> <!-- 본인의 글일때만 보여야 authUser no= vo의 userno -->
+						<a href="${pageContext.request.contextPath }/board/delete/${boardVo.no }?p=${param.p }&kwd=${param.kwd }">삭제</a>
 					</c:if>	
-					<a href="${pageContext.request.contextPath }/board/reply/${no }/${authUser.no}">답글</a>
+					<c:if test="${not empty authUser }">	
+						<a href="${pageContext.request.contextPath }/board/reply/${boardVo.no }?p=${param.p }&kwd=${param.kwd }">답글</a>
+					</c:if>	
 				</div>
 			</div>
 		</div>

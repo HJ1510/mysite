@@ -60,9 +60,9 @@
 		</choose>	
 	</select>
 	
-	<select id="findByNo" resultType="boardvo"> <!-- 완료 -->
+	<select id="findByNo" parameterType="long" resultType="boardvo"> <!-- 완료 -->
 		<![CDATA[
-		select title , contents, user_no as userNo from board where no= #{no }
+		select no, title, contents, group_no as groupNo, order_no as orderNo, depth, user_no as userNo from board where no = #{no }		
 		]]>
 	</select>	
 	
@@ -90,11 +90,23 @@
 		]]>
 	</update>
 	
+	<update id="updateOrederNo" parameterType="map">
+		<![CDATA[
+		update board set order_no = order_no + 1 where group_no = #{groupNo } and order_no >= #{orderNo }
+		]]>	
+	</update>	
+	
 	<update id="hitCountUp" parameterType="Long"> <!-- 완료 -->
 		<![CDATA[
 		update board set hit=hit+1 where no=#{no }
 		]]>
 	</update>	
+	
+	<select id="findByNoAndUserNo" parameterType="map" resultType="boardvo">
+		<![CDATA[
+		select	no, title, contents from board where no = #{no } and user_no = #{userNo }		
+		]]>		
+	</select>
 	
 	<select id="findByNoForReply" resultType="boardvo">
 		<![CDATA[
