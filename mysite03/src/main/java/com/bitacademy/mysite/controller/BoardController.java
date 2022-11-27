@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bitacademy.mysite.security.Auth;
+import com.bitacademy.mysite.security.AuthUser;
 import com.bitacademy.mysite.service.BoardService;
 import com.bitacademy.mysite.vo.BoardVo;
+import com.bitacademy.mysite.vo.UserVo;
 
 @Controller
 @RequestMapping("/board")
@@ -21,16 +23,36 @@ public class BoardController {
 	@Autowired
 	private BoardService boardService;
 	
-	@RequestMapping({"/list", ""}) // 임시완료
+	@RequestMapping({"/index", ""}) // 임시완료
 //	public String list(Model model) {
 //		model.addAttribute("list", boardService.getContentsList());
 //		return "board/list";		
 //	}
 	
-	public String list(@RequestParam(value="p", required=true, defaultValue="1") Integer page, @RequestParam(value="kwd", required=true, defaultValue="") String keyword, Model model){
-		boardService.getContentsList(0);
-		
-		return "board/list";
+	public String index(@RequestParam(value="p", required=true, defaultValue="1") Integer page, @RequestParam(value="kwd", required=true, defaultValue="") String keyword, Model model){
+		Map<String, Object> map = boardService.getContentsList(page, keyword);
+		model.addAttribute("map", map);			
+		return "board/index";
+	}
+	
+	@RequestMapping("/view/{no}") // 완
+	public String view(@PathVariable("no") Long no, Model model) {
+		BoardVo boardVo = boardService.getContents(no);
+		model.addAttribute("boardVo", boardVo);	
+		return "board/view";
+	}
+
+	
+	@Auth
+	@RequestMapping({"/delete/{no}"})
+//	public String delete(@PathVariable("no") Long no) {
+//		boardService.deleteContents(no);
+//		return "redirect:/board";
+//	}
+	
+	public String delete(@AuthUser UserVo authUser, @PathVariable("no") Long boardNo, @RequestParam(value = "p", required = true, defaultValue = "1") Integer page, @RequestParam(value = "kwd", required = true, defaultValue = "") String keyword) {
+			boardService.deleteContents(boardNo, authUser.getNo());		
+		return "redirect:/board?p=" + page + "&kwd=";
 	}
 	
 	@Auth
@@ -47,25 +69,6 @@ public class BoardController {
 		boardService.addContents(vo);
 //		System.out.println("no:"+vo.getNo());
 //		System.out.println("uno:"+vo.getUserNo());
-		return "redirect:/board";
-	}
-	
-	@RequestMapping("/view/{no}") // 완
-	public String view(@PathVariable("no") Long no, Model model) {
-		BoardVo boardVo = boardService.getContents(no);
-		model.addAttribute("boardVo", boardVo);	
-		return "board/view";
-	}
-	
-	@Auth
-	@RequestMapping({"/delete/{no}"})
-//	public String delete(@PathVariable("no") Long no) {
-//		boardService.deleteContents(no);
-//		return "redirect:/board";
-//	}
-	
-	public String delete(@PathVariable("no") Long no, @PathVariable(value="userNo", required=false) Long userNo) {
-			boardService.deleteContents(no, userNo);		
 		return "redirect:/board";
 	}
 	
