@@ -26,7 +26,7 @@ public class FileUploadService {
 				return url;
 			}
 			
-			File restoreDirectory = new File(env.getProperty("fileupload.resourceMapping"));
+			File restoreDirectory = new File(env.getProperty("fileupload.uploadLocation"));
 			if (!restoreDirectory.exists()) {
 				restoreDirectory.mkdirs();
 			}
@@ -41,11 +41,11 @@ public class FileUploadService {
 //			System.out.println("########" + fileSize);
 			byte[] data = multipartFile.getBytes();
 			
-			OutputStream os =new FileOutputStream(env.getProperty("fileupload.resourceMapping") + "/" + restoreFilename);
+			OutputStream os =new FileOutputStream(env.getProperty("fileupload.uploadLocation") + "/" + restoreFilename);
 			os.write(data);
 			os.close();
 			
-			url=env.getProperty("fileupload.uploadLocation")+"/" + restoreFilename;
+			url=env.getProperty("fileupload.resourceMapping")+"/" + restoreFilename;
 			
 		} catch (IOException e) {
 			throw new FileUploadServiceException(e.toString());
