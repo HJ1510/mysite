@@ -12,8 +12,8 @@ import com.bitacademy.mysite.vo.BoardVo;
 
 @Service
 public class BoardService {
-	private static final int LIST_SIZE = 5; // 페이지당 게시물 수
-	private static final int PAGE_SIZE = 5; // index 하단에 표시되는 페이지 수
+	private static final int LIST_SIZE = 5; // 페이지당 게시물 수, 표시되는 페이지 수
+	private static final int PAGE_SIZE = 5; // index 하단에 표시되는 페이지가 넘어가는 단위
 		
 	@Autowired
 	private BoardRepository boardRepository;
