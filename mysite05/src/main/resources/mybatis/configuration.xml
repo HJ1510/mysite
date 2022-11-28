@@ -2,15 +2,15 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-		<typeAlias type="com.bitacademy.mysite.vo.UserVo" alias="uservo"></typeAlias>
-		<typeAlias type="com.bitacademy.mysite.vo.GuestbookVo" alias="guestbookvo"></typeAlias>
-		<typeAlias type="com.bitacademy.mysite.vo.BoardVo" alias="boardvo"></typeAlias>
-		<typeAlias type="com.bitacademy.mysite.vo.GalleryVo" alias="galleryVo"></typeAlias>
+		<typeAlias type="com.bitacademy.mysite.vo.UserVo" alias="uservo"/>
+		<typeAlias type="com.bitacademy.mysite.vo.GuestbookVo" alias="guestbookvo"/>
+		<typeAlias type="com.bitacademy.mysite.vo.GalleryVo" alias="galleryvo"/>
+		<typeAlias type="com.bitacademy.mysite.vo.BoardVo" alias="boardvo" />
     </typeAliases>	
 	<mappers>
 		<mapper resource="mybatis/mappers/user.xml" />
 		<mapper resource="mybatis/mappers/guestbook.xml" />
-		<mapper resource="mybatis/mappers/board.xml" />
 		<mapper resource="mybatis/mappers/gallery.xml" />
-	</mappers>	
+		<mapper resource="mybatis/mappers/board.xml" />
+	</mappers>
 </configuration>
