@@ -18,7 +18,7 @@ public class FileuploadConfig implements WebMvcConfigurer {
 	
 	// Multipart Resolver
 	@Bean
-	public MultipartResolver commonsMultipartResolver() {
+	public MultipartResolver multipartResolver() { //mysite03 spring-servlet.xml 의 bean id와 동일해야..
 		CommonsMultipartResolver multipartResolver=new CommonsMultipartResolver();
 		multipartResolver.setMaxUploadSize(env.getProperty("fileupload.maxUploadSize", Long.class));
 		multipartResolver.setMaxInMemorySize(env.getProperty("fileupload.maxInMemorySize", Integer.class));
