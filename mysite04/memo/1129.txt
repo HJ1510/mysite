@@ -1,0 +1,6 @@
+Thymleaf 사용법 **자습
+
+[/dowork/javastudy]# maven clean package
+
+spring boot 
+DefaultServletHandler
