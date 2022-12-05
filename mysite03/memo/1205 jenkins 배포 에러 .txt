@@ -1,0 +1,65 @@
+jenkins에서 배포시 에러 (server를 settings.xml에 넣었을때)
+
+1.
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  13.753 s
+[INFO] Finished at: 2022-12-05T15:57:46+09:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.tomcat.maven:tomcat7-maven-plugin:2.2:redeploy (default-cli) on project mysite03: Cannot invoke Tomcat manager: 파이프가 깨어짐 (Write failed) -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
+
+-해결방법
+settings. xml
+<settings xmlns="http://maven.apache.org/settings/1.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+	<profiles>
+    		<profile>
+        		<id>production</id>
+        		<properties>
+        				<tomcat.deploy.url>http://192.168.0.95:8080/man/text</tomcat.deploy.url>
+        				을
+            			<tomcat.deploy.url>http://192.168.0.95:8080/manager/text</tomcat.deploy.url>
+            			로 수정
+            			*확인은 # cd /usr/local/bitacademy/tomcat/webapps/ 목록에서 manager 검토가능
+        		</properties>
+    		</profile>
+	</profiles>
+	<servers>
+		<server>
+			<id>tomcat-bitacademy</id>
+			<username>admin</username>
+			<password>manager</password>
+		</server>
+	</servers>
+</settings>
+
+
+
+2.
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  12.813 s
+[INFO] Finished at: 2022-12-05T16:15:25+09:00
+[INFO] ------------------------------------------------------------------------
+[WARNING] The requested profile "productoin" could not be activated because it does not exist.
+[ERROR] Failed to execute goal org.codehaus.mojo:tomcat-maven-plugin:1.1:redeploy (default-cli) on project jblog03: Cannot invoke Tomcat manager: Error writing to server -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
+
+-해결방법
+jenkins 프로젝트 구성
+-f jblog03 clean package tomcat:redeploy -Pproductoin
+을
+-f jblog03 clean package tomcat7:redeploy -Pproductoin
+로 수정
