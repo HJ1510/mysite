@@ -60,7 +60,6 @@ public class BoardRepository {
 		int count = sqlSession.insert("board.insert", vo);
 		return count == 1;
 	}
-	
 
 
 	public void hitCountUp(Long no) {
@@ -77,7 +76,13 @@ public class BoardRepository {
 	}
 
 
+	public BoardVo findByNoAndUserNo(Long no, Long userNo) {
+		Map<String, Long> map = new HashMap<String, Long>();
+		map.put("no", no);
+		map.put("userNo", userNo);
 
+		return sqlSession.selectOne("board.findByNoAndUserNo", map);
+	}
 
 
 

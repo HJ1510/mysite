@@ -62,7 +62,6 @@ public class BoardService {
 		map.put("nextPage", nextPage);
 		map.put("endPage", endPage);
 		
-	
 		return map;
 	}
 	
@@ -74,6 +73,11 @@ public class BoardService {
 		}
 //		System.out.println("2:"+boardVo);
 		return boardVo; //hit++
+	}
+	
+	public BoardVo getContents(Long no, Long userNo) {
+		BoardVo boardVo = boardRepository.findByNoAndUserNo(no, userNo);
+		return boardVo;
 	}
 		
 	

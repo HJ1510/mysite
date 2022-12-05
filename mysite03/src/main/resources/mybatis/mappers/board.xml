@@ -3,7 +3,7 @@
 <mapper namespace="board">
 	<!-- <select id="findAll" resultType="boardvo">
 		<![CDATA[
-		select a.no, a.title, a.hit, date_format(a.reg_date, '%Y/%m/%d %H:%i:%s' ) as regDate, a.depth , a.user_no as userNo, b.name from board a, user b where a.user_no =b.no order by group_no desc, order_no asc, no desc
+		select a.no, a.title, a.hit, date_format(a.reg_date, '%Y/%m/%d %H:%i:%s' ) as regDate, a.depth , a.user_no as userNo, b.name as userName from board a, user b where a.user_no =b.no order by group_no desc, order_no asc, no desc
 		]]>
 	</select> -->
 	
@@ -67,9 +67,19 @@
 	</select>	
 	
 	<insert id="insert" parameterType="boardvo" >
-		<![CDATA[
-		insert into board values(null, #{title } , #{contents } , 0 , now(), (select max(group_no)+1 from board b) , 1 , 0, #{userNo })
-		]]>	
+		<choose>
+			<when test="groupNo == null">
+				<![CDATA[
+				insert into board values(null, #{title } , #{contents } , 0 , now(), (select ifnull (max(group_no),0)+1 from board b) , 1 , 0, #{userNo })
+				]]>	
+			</when>
+			<otherwise>
+				<![CDATA[
+				insert into board values(null, #{title } , #{contents } , 0 , now(), #{groupNo }, #{orderNo }, #{depth }, #{userNo })
+				]]>
+			</otherwise>
+		</choose>
+		
 	</insert>
 	
 	<delete id="deleteByNo" parameterType="Long">

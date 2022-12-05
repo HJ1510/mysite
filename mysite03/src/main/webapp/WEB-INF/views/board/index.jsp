@@ -37,7 +37,7 @@
 							</c:if>
 							<a href="${pageContext.request.contextPath }/board/view/${vo.no }?p=${map.currentPage }&kwd=${map.keyword }">${vo.title }</a>
 						</td>
-						<td>${vo.name }</td>
+						<td>${vo.userName }</td>
 						<td>${vo.hit }</td>
 						<td>${vo.regDate }</td>
 						<td>

@@ -43,7 +43,6 @@ public class BoardController {
 	}
 
 	
-	@Auth
 	@RequestMapping({"/delete/{no}"})
 //	public String delete(@PathVariable("no") Long no) {
 //		boardService.deleteContents(no);
@@ -63,10 +62,10 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "/write/{no}", method = RequestMethod.POST) // 완료
-	public String write(@PathVariable("no") Long no, BoardVo vo) {
-		vo.setUserNo(no);
+	public String write(@AuthUser UserVo authUser,BoardVo boardVo, @PathVariable("no") Long no) {
+		boardVo.setUserNo(authUser.getNo());
 //		System.out.println("1:"+vo);
-		boardService.addContents(vo);
+		boardService.addContents(boardVo);
 //		System.out.println("no:"+vo.getNo());
 //		System.out.println("uno:"+vo.getUserNo());
 		return "redirect:/board";
