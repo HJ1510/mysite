@@ -17,12 +17,12 @@ public class ControllerExceptionHandler {
 	private static final Log Logger = LogFactory.getLog(ControllerExceptionHandler.class);
 
 	@ExceptionHandler(Exception.class)
-	public String HandlerException(Model model, Exception e) { 
+	public String HandlerException(Model model, Exception e) { 		
 		// 404 Error
 		if(e instanceof NoHandlerFoundException) {
 			return "error/404";
 		}
-		
+				
 		// 500 Error
 		// 1. 로깅
 		StringWriter errors = new StringWriter();
