@@ -24,13 +24,16 @@
 					method="post" 
 					action="${pageContext.request.contextPath }/user/join"> <!-- spring-servlet.xml -->
 					
-					<label class="block-label" for="name"><spring:message code="Join.form.label.name" /></label>
+					<label class="block-label" for="name">
+						<spring:message code="Join.form.label.name" />
+					</label>
 					<form:input path="name" /> <!-- modelAttribute -->
 					<p style="text-align: left; padding: 2px 0 2px 0; color: red">
 						<spring:hasBindErrors name="userVo">
 						   <c:if test="${errors.hasFieldErrors('name') }">
-						        	code="${errors.getFieldError('name').codes[0] }" 
-						        	text="${errors.getFieldError('name').defaultMessage }" />
+						   <spring:message 
+						   	code="${errors.getFieldError('name').codes[0] }" 
+						   	text="${errors.getFieldError('name').defaultMessage }" />
 						   </c:if>
 						</spring:hasBindErrors>
 					</p>

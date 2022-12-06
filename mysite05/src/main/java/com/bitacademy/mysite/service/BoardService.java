@@ -108,13 +108,13 @@ public class BoardService {
 //		System.out.println("2:"+vo);		
 	}
 
-//	public BoardVo findContentsForReply(Long no) {	
-//		return boardRepository.findByNoForReply(no);
-//	}
-//	
-//	public void replyContents(BoardVo vo) {
-//		boardRepository.replyInsert(vo);		
-//	}
+	public BoardVo findContentsForReply(Long no) {	
+		return boardRepository.findByNoForReply(no);
+	}
+	
+	public void replyContents(BoardVo vo) {
+		boardRepository.replyInsert(vo);		
+	}
 
 
 

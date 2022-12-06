@@ -1,9 +1,9 @@
-package com.bitacademy.mysite.config;
+package com.bitacademy.mysite.config.web;
 
 import java.util.List;
 
-import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -14,9 +14,9 @@ import com.bitacademy.mysite.security.AuthUserHandlerMethodArgumentResolver;
 import com.bitacademy.mysite.security.LoginInterceptor;
 import com.bitacademy.mysite.security.LogoutInterceptor;
 
-@SpringBootConfiguration
+@Configuration
 public class SecurityConfig implements WebMvcConfigurer {
-
+	
 	// Argument Resolvers
 	@Bean
 	public HandlerMethodArgumentResolver authUserHandlerMethodArgumentResolver() {
@@ -28,7 +28,7 @@ public class SecurityConfig implements WebMvcConfigurer {
 	}
 	
 	
-	// Security Interceptors
+	// Interceptors
 	@Bean
 	public HandlerInterceptor loginInterceptor() {
 		return new LoginInterceptor();
@@ -57,4 +57,5 @@ public class SecurityConfig implements WebMvcConfigurer {
 			.excludePathPatterns("/user/logout")
 			.excludePathPatterns("/assets/**");
 	}
+
 }

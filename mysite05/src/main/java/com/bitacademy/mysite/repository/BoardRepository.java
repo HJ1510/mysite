@@ -78,14 +78,14 @@ public class BoardRepository {
 		return sqlSession.selectOne("board.findByNoAndUserNo", map);
 	}
 
-//	public BoardVo findByNoForReply(Long no) {
-//		return sqlSession.selectOne("board.findByNoForReply", no);
-//	}
-//	
-//	public Boolean replyInsert(BoardVo vo) {
-//		int count = sqlSession.insert("board.replyInsert", vo);
-//		return count == 1;		
-//	}
+	public BoardVo findByNoForReply(Long no) {
+		return sqlSession.selectOne("board.findByNoForReply", no);
+	}
+	
+	public Boolean replyInsert(BoardVo vo) {
+		int count = sqlSession.insert("board.replyInsert", vo);
+		return count == 1;		
+	}
 
 
 
