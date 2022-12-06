@@ -63,3 +63,28 @@ jenkins 프로젝트 구성
 을
 -f jblog03 clean package tomcat7:redeploy -Pproductoin
 로 수정
+
+3.
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  40.370 s
+[INFO] Finished at: 2022-12-06T09:56:21+09:00
+[INFO] ------------------------------------------------------------------------
+[WARNING] The requested profile "productoin" could not be activated because it does not exist.
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:2.12.4:test (default-test) on project container: There are test failures.
+[ERROR] 
+[ERROR] Please refer to /root/.jenkins/workspace/spring-practices/container/target/surefire-reports for the individual test results.
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+
+: test나 library에 문제가 있음 (test를 먼저 돌려보고 오류가 있으면 배포 안해줌)
+
+-해결방법
+1. test 스킵
+clean package tomcat7:redeploy -Pproductoin -Dmaven.test.skip=true
+-Dmaven.test.skip=true 옵션 추가
