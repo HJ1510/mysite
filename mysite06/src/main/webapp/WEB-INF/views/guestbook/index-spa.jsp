@@ -16,46 +16,55 @@ var startNo = 0;
 
 var fetchList = function() {
 	$.ajax({
-		url: "${pageContext.request.contextPath }/api/list/" + startNo,
+		url: "${pageContext.request.contextPath }/guestbook/api/list/" + startNo,
 		async: true,
 		type: "get",
 		dataType: "json",
 		success: function(response){
-			response.forEach(function(index, vo){
-				var htmls = 
-				"<li data-no='" + vo.no + "'>" + 
-				"<strong>"+vo.name+"</strong>"+
-				"<p>"+vo.contents.replace(/\n/gi, "<br>")+"</p>"+
-				"<strong></strong>"+
-				"<a href='' data-no='" + vo.no + "'>삭제</a> "+
-				"</li>";		
-				$("#list-guestbook").append(htmls);				
-			})
+			console.log(response);
+			response.forEach(function(vo){
+				var htmls =
+					"<li data-no='" + vo.no + "'>" +
+					"	<strong>지나가다가</strong>" +
+					"	<p>" + vo.contents.replace(/\n/gi, "<br>") + "</p>" +
+					"   <strong></strong>" +
+					"   <a href='' data-no='" + vo.no + "'>삭제</a>" + 
+					"</li>";
+				$("#list-guestbook").append(htmls);
+			});
+			
 			startNo = $("#list-guestbook li").last().data("no");
 			console.log(startNo);
 		},
 		error: function(xhr, status, error) {
 			console.error(status, error);
 		}
-	});
+	});	
 }
 
-
 $(function(){
+	$("#add-form").submit(function(event){
+		event.preventDefault();
+		
+	});
+	
 	$(window).scroll(function(){
+		
 		var windowHeight = $(this).height();
-		var documenHeight = $(document).height();
-		var scrollTop =  $(this).scrollTop();
+		var documentHeight = $(document).height();
+		var scrollTop = $(this).scrollTop();
 		
-		console.log(windowHeight+":"+documenHeight+":"+scrollTop);
+		console.log(windowHeight + ":" + documentHeight + ":" + scrollTop)
 		
-		if(scrollTop + windowHeight + 10 > documenHeight) {
+		if(scrollTop + windowHeight + 10 > documentHeight){
 			fetchList();
 		}
+		
 	});
+	
 	// 최초 리스트 가져오기
 	fetchList();
-})
+});
 </script>
 </head>
 <body>
@@ -64,7 +73,7 @@ $(function(){
 		<div id="content">
 			<div id="guestbook">
 				<h1>방명록</h1>
-				<form id="add-form" action="" method="post">
+				<form id="add-form" action="dwqdwqdwq" method="post">
 					<input type="text" id="input-name" placeholder="이름">
 					<input type="password" id="input-password" placeholder="비밀번호">
 					<textarea id="tx-content" placeholder="내용을 입력해 주세요."></textarea>
