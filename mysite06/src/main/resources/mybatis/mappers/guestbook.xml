@@ -7,6 +7,22 @@
 		]]>
 	</select> <!-- reg_date vo의 get,set과 이름 맞춰줘야  -->
 	
+	<select id="findAllByNo" parameterType="long" resultType="guestbookvo">
+		<![CDATA[
+		select no, name, contents, reg_date as regDate 
+		from guestbook 
+		]]>
+		<if test="_parameter > 0"> <!-- 값으로 올때는 꼭꼭 _parameter 로만 할 수 있음.. vo는 상관없음 -->
+			<![CDATA[
+				where no < #{_parameter }
+			]]>
+		</if>
+		<![CDATA[
+		  order by no desc 
+		  limit 0, 5
+		]]>
+	</select> <!-- reg_date vo의 get,set과 이름 맞춰줘야  -->
+	
 	<insert id="insert" parameterType="guestbookvo" >
 		<![CDATA[
 		insert into guestbook values(null, #{name }, #{password }, #{contents }, now())

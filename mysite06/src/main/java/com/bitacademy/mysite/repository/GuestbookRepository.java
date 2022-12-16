@@ -19,6 +19,10 @@ public class GuestbookRepository {
 	public List<GuestbookVo> findAll() {
 		return sqlSession.selectList("guestbook.findAll");
 	}
+	
+	public List<GuestbookVo> findAll(Long startNo) {
+		return sqlSession.selectList("guestbook.findAllByNo", startNo);
+	}
 
 	public Boolean insert(GuestbookVo vo) {
 		int count = sqlSession.insert("guestbook.insert", vo);
@@ -32,5 +36,4 @@ public class GuestbookRepository {
 		map.put("password", password);
 		return sqlSession.selectOne("guestbook.deleteByNoAndPassword", map);
 	}
-
 }
